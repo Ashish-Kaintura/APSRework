@@ -123,7 +123,7 @@ const AccordionSlider = () => {
                 </div>
 
                 {/* Progress Bar (Global) */}
-                <div className="mt-3 flex gap-2 justify-center">
+                <div className="mt-6 flex gap-2 justify-center">
                     {slides.map((_, i) => (
                         <div
                             key={i}

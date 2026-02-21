@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { useLocation } from "react-router-dom";
-
+import Logo from "../images/logo/logo_footer.png";
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
@@ -136,9 +136,9 @@ const Navbar = () => {
           <Link to="/">
             <img
               loading="lazy"
-              src="https://i.postimg.cc/FKqwPS2B/white-logo-1.png"
+              src={Logo}
               alt="Star Alliance Aviation Academy"
-              className="h-[70px]"
+              className="h-[50px]"
             />
           </Link>
           <ul className="flex gap-6 text-sm font-medium relative">
@@ -163,6 +163,9 @@ const Navbar = () => {
               {activeDropdown === "pilot" && renderDropdown("pilot")}
             </li>
 
+            <NavLink to="/about-us">
+              <li className="hover:text-Secondary">Blog</li>
+            </NavLink>
             <NavLink to="/about-us">
               <li className="hover:text-Secondary">Contact Us</li>
             </NavLink>

@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 body {
-    @apply bg-[#0a0a0a] text-[#e0e0e0];
+    /* @apply bg-[#0a0a0a] text-[#e0e0e0]; */
     font-family: 'Manrope', sans-serif;
     overflow-x: hidden;
 }
@@ -14,7 +14,9 @@ h3,
 .serif {
     font-family: 'Playfair Display', serif;
 }
-
+.panel {
+    will-change: transform;
+}
 /* Premium Text Reveal Utility */
 .clip-text {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
