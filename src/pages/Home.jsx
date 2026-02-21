@@ -10,6 +10,9 @@ import { SiSecurityscorecard } from 'react-icons/si'
 import { AboutSummary } from '../components/AboutSummary'
 import HorizontalScroll from '../components/HorizontalScroll'
 import { TestimonialSection } from '../components/TestimonialSection'
+import { WhyChooseUs } from '../components/WhyChooseUs'
+import VerticalSlider from '../components/VerticalSlide'
+import Scrollytelling from '../components/Scrollytelling'
 
 export default function Home() {
     return (
@@ -23,10 +26,12 @@ export default function Home() {
             </section>
             <AboutSummary />
             {/* <HeroSection/> */}
-         
-            <HorizontalScroll/>
 
-            <TestimonialSection/>
+            <HorizontalScroll />
+            <WhyChooseUs />
+            <Scrollytelling/>
+            <VerticalSlider/>
+            <TestimonialSection />
             <section className='h-96 bg-black' ></section>
         </>
     )
