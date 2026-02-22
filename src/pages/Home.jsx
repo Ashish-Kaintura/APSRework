@@ -28,8 +28,8 @@ export default function Home() {
             {/* <HeroSection/> */}
 
             <HorizontalScroll />
-            <WhyChooseUs />
-            <Scrollytelling/>
+            {/* <WhyChooseUs />
+            <Scrollytelling/> */}
             <VerticalSlider/>
             <TestimonialSection />
             <section className='h-96 bg-black' ></section>
