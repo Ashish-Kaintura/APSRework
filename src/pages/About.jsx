@@ -15,9 +15,11 @@ export default function About() {
       <section>
         <AboutHero />
         <FounderNarrative />
+        <IndustrialRecognition />
         <VisionStory />
-        <IndustrialRecognition/>
+
         <MissionValues />
+
         <JourneyRoadmap />
         <NationalPresence />
         <CareersSection />

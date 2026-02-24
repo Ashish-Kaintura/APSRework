@@ -49,7 +49,7 @@ export const FounderNarrative = () => {
             <div className="relative z-10 rounded-2xl overflow-hidden aspect-[3/4] shadow-2xl">
               <img
                 ref={imageRef}
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop"
+                src="https://i.postimg.cc/HxhHYbX8/anil-puri.jpg" // Replace with your actual image URL
                 alt="Founder"
                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
               />
@@ -64,30 +64,39 @@ export const FounderNarrative = () => {
               <Quote size={120} fill="currentColor" />
             </div>
 
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight italic tracking-tighter relative z-10">
-              "What seemed like obsession at one point is now a global reality."
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight tracking-tighter relative z-10">
+              India's Trusted Integrated Service Provider
             </h2>
 
             <div className="space-y-6 text-slate-600 text-sm md:text-base leading-relaxed">
               <p>
-                The vision and perseverance of one man changed the shape of
-                several industries. This all started from a **Tin Shed office
-                and a Vespa scooter** with a passion to create solutions for
-                complex problems.
+                What started as a dreams 39 years ago, is now a force to reckon
+                with APS Group is a leading Security Company, Facility
+                Management Company, HR Outsourcing Company and Homeland
+                Security. Surveillance Company and is now a Innovation Hub with
+                APS Business Incubator.
               </p>
               <p>
-                APS Group has now evolved into a leading Integrated Service
-                Provider of India, but the core philosophy remains: **Never
-                underestimate the power of your dreams.**
+                APS Group, which is now a leading Integrated Service Provider of
+                India, was started from humble beginning. The vision &
+                perseverance of one man changed the shape of several industries.
+                What seemed as obsession at one point in time, is now a reality!
+                This all started from a Tin Shed office & a vespa scooter & a
+                passion to create Solution for problems. We invite you to be a
+                part of such an obsession. Navigate the Solution Segments
               </p>
             </div>
 
             <div className="pt-4 border-t border-slate-100">
               <p className="font-black text-slate-900 uppercase tracking-widest">
-                The Founder's Vision
+                The Founder's & Chairman Mr. Anil Puri
               </p>
+
               <p className="text-primary text-xs font-bold uppercase tracking-widest mt-1">
                 Established 1986
+              </p>
+              <p className="font-black text-slate-900 uppercase tracking-widest">
+                Never underestimate the power of your dreams
               </p>
             </div>
           </div>

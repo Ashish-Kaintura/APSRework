@@ -1,121 +1,123 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Award, Star, ShieldCheck, Trophy } from "lucide-react";
-
-const awards = [
+import { Award, Star, ShieldCheck, Trophy, ChevronRight } from "lucide-react";
+import image1 from "../../images/About/Picture1.png";
+import image2 from "../../images/About/Picture2 (1).png";
+import image3 from "../../images/About/Picture3.png";
+import image4 from "../../images/About/Picture4.jpg";
+const primaryAwards = [
   {
     year: "2018",
     title: "Best Security Company of the Year",
     org: "CAPSI",
-    desc: "Earned a large number of Honours and accolades, including the prestigious Security Company of the Year 2018.",
-    icon: <Trophy className="text-primary" size={24} />,
+    desc: "The company has earned a large number of Honours, awards, and accolades including this prestigious title.",
+    image: image1,
   },
   {
     year: "2019",
     title: "Security Personality of the Year",
-    org: "CAPSI / India Achiever’s",
-    desc: "Mr. Anil Puri (CMD) was declared Security Personality of the Year and received the Business Leadership Award 2020.",
-    icon: <Star className="text-primary" size={24} />,
+    org: "Mr. Anil Puri (CMD)",
+    desc: "Declared Security Personality of the Year by CAPSI and received the India Achiever’s Award for Business Leadership in 2020.",
+    image: image2,
   },
   {
-    year: "2020",
+    year: "2019-20",
     title: "Best Security Company Pan India",
     org: "JLL",
-    desc: "Recognized by global real estate leader JLL as the best security partner amongst all national competitors.",
-    icon: <ShieldCheck className="text-primary" size={24} />,
-  },
-  {
-    year: "2025",
-    title: "Best Security Company",
-    org: "Max Life Insurance",
-    desc: "Featured on Business Connect Magazine as a prime example of Best Company Culture to inspire business communities.",
-    icon: <Award className="text-primary" size={24} />,
+    desc: "Various clients have recognized us as the top security partner amongst all regional and national competitors.",
+    image: image3,
   },
 ];
 
 export const IndustrialRecognition = () => {
   return (
-    <section className="py-20 lg:py-28 bg-slate-900 overflow-hidden relative font-sans">
-      {/* Background Decorative Element */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2" />
-
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* Header - Super Premium */}
-        <div className="mb-16 lg:mb-24 flex flex-col items-center text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="flex items-center gap-3 mb-4"
-          >
-            <span className="h-[1px] w-12 bg-primary"></span>
-            <span className="text-primary font-black uppercase tracking-[0.4em] text-xs">
-              Legacy of Excellence
-            </span>
-            <span className="h-[1px] w-12 bg-primary"></span>
-          </motion.div>
-          <h2 className="text-4xl lg:text-6xl font-black text-white leading-tight tracking-tighter uppercase">
+    <section className="py-16 lg:py-24 bg-white font-sans overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Section Header */}
+        <div className="mb-16 border-l-4 border-primary pl-6">
+          <span className="text-primary font-black uppercase tracking-widest text-xs">
+            Industry Leadership
+          </span>
+          <h2 className="text-3xl lg:text-5xl font-black text-slate-900 tracking-tighter uppercase mt-2">
             INDUSTRIAL{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-slate-400">
-              RECOGNITION.
-            </span>
+            <span className="text-primary">RECOGNITION.</span>
           </h2>
         </div>
 
-        {/* Awards Grid - Creative Bento-style */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {awards.map((award, i) => (
+        {/* 1. Static Grid: Core Accolades */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          {primaryAwards.map((award, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="relative group p-8 rounded-[32px] bg-white/5 border border-white/10 backdrop-blur-sm flex flex-col justify-between min-h-[380px] hover:bg-white/10 transition-all duration-500"
+              viewport={{ once: true }}
+              className="group"
             >
-              {/* Card Glow Effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-[32px]" />
-
-              <div className="relative z-10">
-                <div className="flex justify-between items-start mb-8">
-                  <div className="p-4 bg-slate-800 rounded-2xl group-hover:bg-primary group-hover:text-white transition-colors duration-500">
-                    {award.icon}
-                  </div>
-                  <span className="text-4xl font-black text-white/10 group-hover:text-primary/20 transition-colors">
-                    {award.year}
-                  </span>
+              <div className="relative h-64 mb-6 overflow-hidden rounded-2xl shadow-lg border border-slate-100">
+                <img
+                  src={award.image}
+                  alt={award.title}
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                />
+                <div className="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-black text-primary">
+                  {award.year}
                 </div>
-
-                <h4 className="text-primary text-[10px] font-black uppercase tracking-widest mb-2">
-                  {award.org}
-                </h4>
-                <h3 className="text-xl lg:text-2xl font-bold text-white mb-4 leading-tight tracking-tight">
-                  {award.title}
-                </h3>
               </div>
-
-              <p className="relative z-10 text-slate-400 text-xs lg:text-sm leading-relaxed font-medium group-hover:text-slate-200 transition-colors">
+              <h4 className="text-primary font-bold uppercase tracking-widest text-[10px] mb-2">
+                {award.org}
+              </h4>
+              <h3 className="text-xl font-black text-slate-900 leading-tight mb-3 group-hover:text-primary transition-colors">
+                {award.title}
+              </h3>
+              <p className="text-slate-500 text-sm leading-relaxed text-justify">
                 {award.desc}
               </p>
             </motion.div>
           ))}
         </div>
 
-        {/* Business Connect Highlight */}
+        {/* 2. Featured Recognition: Magazine Spotlight (Compact Carousel Style) */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          className="mt-12 p-8 lg:p-10 rounded-[40px] bg-gradient-to-r from-primary to-[#ff8e94] flex flex-col lg:flex-row items-center justify-between gap-8 shadow-2xl shadow-primary/20"
+          className="relative bg-slate-900 rounded-[32px] p-8 lg:p-12 text-white flex flex-col lg:flex-row items-center gap-10 shadow-2xl"
         >
-          <div className="text-center lg:text-left">
-            <h4 className="text-white font-black italic text-2xl lg:text-3xl tracking-tight">
-              "AN EXAMPLE TO INSPIRE BUSINESS COMMUNITIES"
-            </h4>
-            <p className="text-white/80 text-sm mt-2 uppercase tracking-widest font-bold">
-              Featured on the Cover of Business Connect Magazine
-            </p>
+          <div className="w-full lg:w-1/3">
+            <div className="relative rounded-2xl overflow-hidden border-4 border-white/5">
+              <img
+                src={image4}
+                alt="Business Connect Magazine"
+                className="w-full h-auto"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
+            </div>
           </div>
-          <div className="shrink-0 bg-white/20 backdrop-blur-xl px-8 py-4 rounded-2xl border border-white/30 text-white font-black uppercase text-xs tracking-widest">
-            August 2021 Edition
+
+          <div className="w-full lg:w-2/3 space-y-6">
+            <div className="flex items-center gap-2">
+              <Trophy size={18} className="text-primary" />
+              <span className="text-primary font-bold text-xs uppercase tracking-[0.2em]">
+                Featured Coverage 2025
+              </span>
+            </div>
+            <h3 className="text-2xl lg:text-4xl font-black italic tracking-tight">
+              "An Example to Inspire <br /> Business Communities"
+            </h3>
+            <p className="text-slate-400 text-sm lg:text-base leading-relaxed">
+              APS Group figured on the cover page of the{" "}
+              <strong>Business Connect Magazine (August 21)</strong> as the Best
+              Company Culture Example. Recently honored as the Best Security
+              Company 2025 by Max Life Insurance.
+            </p>
+            <button className="flex items-center gap-2 text-primary font-black uppercase text-xs tracking-widest hover:text-white transition-colors">
+              Read Full Feature <ChevronRight size={16} />
+            </button>
+          </div>
+
+          {/* Subtle Background Mark */}
+          <div className="absolute -bottom-10 -right-10 text-[10vw] font-black text-white/[0.03] select-none uppercase">
+            Legacy
           </div>
         </motion.div>
       </div>
