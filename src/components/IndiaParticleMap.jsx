@@ -1,74 +1,81 @@
 import React, { useRef, useEffect } from "react";
-import * as THREE from "three";
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import indiaSVG from "../images/home/india.png";
+import indiaMap from "../images/home/india.png";
 
-gsap.registerPlugin(ScrollTrigger);
-
-const IndiaScrollParticles = () => {
-  const containerRef = useRef();
+const IndiaParticleMap = () => {
+  const canvasRef = useRef(null);
 
   useEffect(() => {
-    const container = containerRef.current;
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000,
-    );
-    camera.position.z = 200;
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = indiaMap; // ✅ FIXED
 
-    const renderer = new THREE.WebGLRenderer({ alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    container.appendChild(renderer.domElement);
+    const particles = [];
+    const particleSize = 2;
+    const gap = 4;
 
-    const loader = new THREE.TextureLoader();
+    img.onload = () => {
+      console.log("Image Loaded");
 
-    loader.load(indiaSVG, (texture) => {
-      const geometry = new THREE.PlaneGeometry(200, 200, 200, 200);
-      const material = new THREE.PointsMaterial({
-        size: 2,
-        map: texture,
-        transparent: true,
-        color: 0xffffff,
-      });
+      canvas.width = img.width;
+      canvas.height = img.height;
 
-      const points = new THREE.Points(geometry, material);
-      scene.add(points);
+      ctx.drawImage(img, 0, 0);
 
-      // scatter initially left side
-      geometry.attributes.position.array.forEach((v, i) => {
-        geometry.attributes.position.array[i] = Math.random() * -300;
-      });
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const data = imageData.data;
 
-      gsap.to(geometry.attributes.position.array, {
-        scrollTrigger: {
-          trigger: container,
-          start: "top top",
-          end: "bottom+=1000 top",
-          scrub: true,
-          pin: true,
-        },
-        duration: 1,
-        onUpdate: () => {
-          geometry.attributes.position.needsUpdate = true;
-        },
-      });
+      for (let y = 0; y < canvas.height; y += gap) {
+        for (let x = 0; x < canvas.width; x += gap) {
+          const index = (y * canvas.width + x) * 4;
+          const alpha = data[index + 3];
 
-      function animate() {
-        requestAnimationFrame(animate);
-        points.rotation.y += 0.001;
-        renderer.render(scene, camera);
+          if (alpha > 128) {
+            particles.push({
+              x: Math.random() * canvas.width,
+              y: Math.random() * canvas.height,
+              originX: x,
+              originY: y,
+            });
+          }
+        }
       }
 
       animate();
-    });
+
+      gsap.to(particles, {
+        x: (i) => particles[i].originX,
+        y: (i) => particles[i].originY,
+        duration: 2,
+        ease: "power3.out",
+        stagger: 0.001,
+      });
+    };
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach((p) => {
+        ctx.fillStyle = "white";
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, particleSize, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      requestAnimationFrame(animate);
+    }
   }, []);
 
-  return <section ref={containerRef} className="h-[200vh] bg-black"></section>;
+  return (
+    <div
+      style={{ background: "black", display: "flex", justifyContent: "center" }}
+    >
+      <canvas ref={canvasRef} />
+    </div>
+  );
 };
 
-export default IndiaScrollParticles;
+export default IndiaParticleMap;

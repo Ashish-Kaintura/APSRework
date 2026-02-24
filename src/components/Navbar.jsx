@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { useLocation } from "react-router-dom";
-import Logo from "../images/logo/logo_footer.png";
+import Logo from "../images/logo/aps logo white.png";
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);

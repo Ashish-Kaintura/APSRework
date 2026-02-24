@@ -27,14 +27,7 @@ const slides = [
         image: "https://i.postimg.cc/nrKNMCML/04.jpg",
         icon: <Building2 size={24} />,
     },
-    // {
-    //     id: 4,
-    //     title: "Manned Guarding",
-    //     label: "Physical Security",
-    //     description: "Expertly trained security personnel for corporate, industrial, and residential protection.",
-    //     image: "https://i.postimg.cc/QCgvVHVd/03.jpg", // Security Guard Concept
-    //     icon: <Shield size={24} />,
-    // }
+   
 ];
 
 const AccordionSlider = () => {

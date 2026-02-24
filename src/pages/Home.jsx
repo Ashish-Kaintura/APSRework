@@ -14,6 +14,8 @@ import { WhyChooseUs } from "../components/WhyChooseUs";
 import VerticalSlider from "../components/VerticalSlide";
 import Scrollytelling from "../components/Scrollytelling";
 import IndiaParticleMap from "../components/IndiaParticleMap";
+import { FAQSection } from "../components/FAQsection";
+import { ClientTicker } from "../components/ClientTicker";
 
 export default function Home() {
   return (
@@ -25,14 +27,15 @@ export default function Home() {
         </div>
       </section>
       <AboutSummary />
-      <IndiaParticleMap />
+      <ClientTicker />
       {/* <HeroSection/> */}
-{/* 
-      <HorizontalScroll />
-      <WhyChooseUs />
-      <Scrollytelling />
-      <VerticalSlider />
-      <TestimonialSection /> */}
+
+        <HorizontalScroll />
+        <WhyChooseUs />
+        <Scrollytelling />
+        <VerticalSlider />
+        <TestimonialSection />
+      <FAQSection />
       {/* <section className="h-96 bg-black"></section> */}
     </>
   );
