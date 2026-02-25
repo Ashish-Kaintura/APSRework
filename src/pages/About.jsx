@@ -8,6 +8,9 @@ import { NationalPresence } from "../components/About/NationalPresence";
 import { CareersSection } from "../components/About/CareersSection";
 import { JourneyRoadmap } from "../components/About/JourneyRoadmap";
 import { IndustrialRecognition } from "../components/About/IndustrialRecognition";
+import { LiquidZigZagStory } from "../components/About/ZigZagStory";
+import { ZigZagStory } from "../components/About/ZigzagstorynoLiquied";
+import { LeadershipSection } from "../components/About/LeadershipSection";
 
 export default function About() {
   return (
@@ -17,12 +20,13 @@ export default function About() {
         <FounderNarrative />
         <IndustrialRecognition />
         <VisionStory />
-
-        <MissionValues />
-
+        <LeadershipSection/>
+        {/* <MissionValues /> */}
+        <LiquidZigZagStory />
+        {/* <ZigZagStory /> */}
         <JourneyRoadmap />
-        <NationalPresence />
-        <CareersSection />
+        {/* <NationalPresence /> */}
+        {/* <CareersSection /> */}
         <AboutCTA />
       </section>
     </>

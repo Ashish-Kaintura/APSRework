@@ -130,7 +130,7 @@ const Navbar = () => {
       {/* Desktop Navbar */}
       <div
         className={`hidden md:flex ${scrolling ? "w-[1180px]" : "w-full"
-          } rounded-lg justify-center bg-gradient-to-r from-primary via-[#a0021c]   to-[#a9002d]  text-white shadow transition-all duration-300 uppercase`}
+          }  justify-center bg-gradient-to-r from-primary via-[#a0021c]   to-[#a9002d]  text-white shadow transition-all duration-300 uppercase`}
       >
         <nav className="flex items-center justify-between w-full max-w-[1320px] px-4 py-2 relative">
           <Link to="/">

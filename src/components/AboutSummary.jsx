@@ -202,7 +202,7 @@ export const AboutSummary = () => {
                 <div className="mask-text flex items-center gap-3">
                   <span className="h-[1px] w-6 lg:w-10 bg-primary"></span>
                   <span className="text-primary text-[10px] lg:text-xs font-black uppercase tracking-[0.2em]">
-                    The APS Story
+                    About APS
                   </span>
                 </div>
               </div>
@@ -220,11 +220,17 @@ export const AboutSummary = () => {
             <div className="space-y-4 text-slate-600 leading-relaxed text-sm lg:text-base font-medium">
               <div className="overflow-hidden">
                 <p className="mask-text border-l-2 border-primary/30 pl-4 italic">
-                  Journey began with a{" "}
+                  The vision & perseverance of one{" "}
                   <span className="text-slate-900 font-bold">
-                    tin shed office and a Vespa scooter.
+                    man changed the shape of several industries.
                   </span>{" "}
-                  What many saw as obsession, we saw as solutions.
+                  The vision & perseverance of one man changed the shape of
+                  several industries. What seemed as obsession at one point in
+                  time, is now a reality! This all started from a Tin Shed
+                  office & a vespa scooter & a passion to create Solution for
+                  problems. We invite you to be a part of such an obsession.
+                  Navigate the Solution Segments & Our Companies by clicking
+                  below button.
                 </p>
               </div>
 

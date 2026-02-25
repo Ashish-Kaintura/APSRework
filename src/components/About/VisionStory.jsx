@@ -9,7 +9,7 @@ export const VisionStory = () => {
   useGSAP(
     () => {
       gsap.to(scrollRef.current, {
-        x: "-50%",
+        x: "-60%",
         scrollTrigger: {
           trigger: sectionRef.current,
           pin: true,
@@ -36,11 +36,10 @@ export const VisionStory = () => {
             1986
           </h2>
           <div className="text-white -mt-20 ml-10">
-            <h3 className="text-4xl font-bold mb-4">The Tin Shed Era</h3>
+            <h3 className="text-4xl font-bold mb-4">Compliance Excellence</h3>
             <p className="text-slate-400 max-w-md whitespace-normal leading-relaxed">
-              Starting with a single Vespa scooter and a passion for solutions,
-              one man's vision began to solve India's complex service
-              challenges.
+              We follow all major statutory requirements and maintain
+              transparent, reliable workforce processes across every site
             </p>
           </div>
         </div>
@@ -51,22 +50,42 @@ export const VisionStory = () => {
             GROWTH
           </h2>
           <div className="text-white -mt-20 ml-10">
-            <h3 className="text-4xl font-bold mb-4">Expanding Horizons</h3>
+            <h3 className="text-4xl font-bold mb-4">
+              Strong Liaisoning Support
+            </h3>
             <p className="text-slate-400 max-w-md whitespace-normal leading-relaxed">
-              Expansion into 27 states and UTs, building a workforce of over
-              42,000 security professionals.
+              A dedicated team coordinates with local authorities to ensure
+              smooth operations, timely clearances, and quick issue resolution.
             </p>
           </div>
         </div>
 
         {/* Present Day */}
         <div className="w-[60vw] flex-shrink-0">
-          <h2 className="text-[12vw] font-black text-primary">TODAY</h2>
+          <h2 className="text-[12vw] font-black text-primary">APS</h2>
           <div className="text-white -mt-20 ml-10">
-            <h3 className="text-4xl font-bold mb-4">Leading the Industry</h3>
+            <h3 className="text-4xl font-bold mb-4">
+              Training & Skill Development
+            </h3>
             <p className="text-slate-400 max-w-md whitespace-normal leading-relaxed">
-              A premier integrated service provider with no compromise on
-              quality or value of service delivery.
+              Modern training programs prepare our personnel in safety,
+              protocols, technology use, and service delivery—ensuring high
+              performance on every site.
+            </p>
+          </div>
+        </div>
+        <div className="w-[60vw] flex-shrink-0">
+          <h2 className="text-[12vw] font-black text-white opacity-10">
+            Strength
+          </h2>
+          <div className="text-white -mt-20 ml-10">
+            <h3 className="text-4xl font-bold mb-4">
+              Technology Enabled Operations
+            </h3>
+            <p className="text-slate-400 max-w-md whitespace-normal leading-relaxed">
+              Risk & threat mitigation powered by: 24/7 Command Center AI-driven
+              surveillance Digital patrolling and reporting Smart guarding
+              solutions
             </p>
           </div>
         </div>
