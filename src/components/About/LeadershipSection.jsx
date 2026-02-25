@@ -94,7 +94,7 @@ const ProfileCard = ({ person, size = "normal" }) => {
             `}
       >
         <div className="w-full h-full rounded-full overflow-hidden border-[3px] border-white bg-slate-100">
-          <img
+          <img  loading="lazy"
             src={imageSrc}
             alt={person.name}
             className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"

@@ -71,7 +71,7 @@ export const ClientTicker = () => {
               key={index}
               className="flex items-center justify-center px-10 lg:px-16"
             >
-              <img
+              <img  loading="lazy"
                 src={logo.url}
                 alt={logo.name}
                 className="h-8 lg:h-10 w-auto object-contain grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"

@@ -154,7 +154,7 @@ const Navbar = () => {
               onMouseEnter={() => setActiveDropdown("pilot")}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <NavLink to="/">
+              <NavLink to="/services">
                 <div className="flex items-center gap-1 cursor-pointer hover:text-Secondary">
                   {" "}
                   Services <ChevronDown size={16} />

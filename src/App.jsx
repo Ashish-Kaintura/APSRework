@@ -14,6 +14,7 @@ import { Footer } from "./components/Footer";
 
 const PremiumLandingPage = lazy(() => import("./pages/Home"));
 const AboutPage = lazy(() => import("./pages/About"));
+const ServicesPage = lazy(() => import("./pages/Services"));
 
 /* ==============================
    ✅ This component CAN use useLocation
@@ -103,6 +104,19 @@ function AppContent() {
                     transition={{ duration: 0.6 }}
                   >
                     <AboutPage />
+                  </motion.div>
+                }
+              />
+              <Route
+                path="/services"
+                element={
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -40 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <ServicesPage />
                   </motion.div>
                 }
               />

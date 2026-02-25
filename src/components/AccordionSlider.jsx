@@ -68,7 +68,7 @@ const AccordionSlider = () => {
                         >
                             {/* Background Image */}
                             <div className="absolute inset-0">
-                                <img
+                                <img  loading="lazy"
                                     src={slide.image}
                                     alt={slide.title}
                                     className={`w-full h-full object-cover transition-transform duration-1000 ${expandedIndex === i ? 'scale-110' : 'scale-100 grayscale'

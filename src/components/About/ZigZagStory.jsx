@@ -183,7 +183,7 @@ export const LiquidZigZagStory = () => {
             }}
           >
             {content.map((item, i) => (
-              <img
+              <img  loading="lazy"
                 key={item.id}
                 src={item.image}
                 alt={item.title}
@@ -239,7 +239,7 @@ export const LiquidZigZagStory = () => {
           <div key={item.id} className="mobile-section flex flex-col gap-6">
             {/* Compact Mobile Image */}
             <div className="w-full h-[250px] sm:h-[350px] rounded-3xl overflow-hidden shadow-lg border border-slate-100">
-              <img
+              <img  loading="lazy"
                 src={item.image}
                 alt={item.title}
                 className="w-full h-full object-cover"

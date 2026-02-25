@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import banner from "../../images/About/aboutbanner.png";
 
-export const AboutHero = () => {
+export const ServiceHero = () => {
   const container = useRef();
 
   useGSAP(
@@ -53,7 +53,8 @@ export const AboutHero = () => {
 
       {/* --- Banner Image Layer --- */}
       <div className="absolute inset-0 z-0">
-        <img  loading="lazy"
+        <img
+          loading="lazy"
           src={banner}
           alt="APS Group Headquarters"
           className="hero-image w-full h-full object-cover"

@@ -97,7 +97,7 @@ export const TestimonialSection = () => {
           {/* Left: Image (Made smaller and more responsive) */}
           <div className="w-full max-w-[320px] lg:max-w-sm relative">
             <div className="relative z-10 w-full aspect-square lg:aspect-[4/5] rounded-3xl overflow-hidden shadow-xl">
-              <img
+              <img  loading="lazy"
                 ref={imageRef}
                 src={testimonials[index].image}
                 alt={testimonials[index].name}

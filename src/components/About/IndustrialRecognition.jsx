@@ -55,7 +55,7 @@ export const IndustrialRecognition = () => {
               className="group"
             >
               <div className="relative h-64 mb-6 overflow-hidden rounded-2xl shadow-lg border border-slate-100">
-                <img
+                <img  loading="lazy"
                   src={award.image}
                   alt={award.title}
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
@@ -85,7 +85,7 @@ export const IndustrialRecognition = () => {
         >
           <div className="w-full lg:w-1/3">
             <div className="relative rounded-2xl overflow-hidden border-4 border-white/5">
-              <img
+              <img  loading="lazy"
                 src={image4}
                 alt="Business Connect Magazine"
                 className="w-full h-auto"

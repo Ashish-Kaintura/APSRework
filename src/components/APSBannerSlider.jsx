@@ -94,7 +94,7 @@ const APSBannerSlider = () => {
             {/* Background Image Container */}
             <div className="absolute inset-0 z-0">
                 <div className="absolute inset-0 bg-black/40 z-10" /> {/* Dark Overlay */}
-                <img
+                <img  loading="lazy"
                     ref={imageRef}
                     src={slides[index].image}
                     className="w-full h-full object-cover grayscale-[50%]"

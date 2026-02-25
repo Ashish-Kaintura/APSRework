@@ -71,7 +71,7 @@ const PremiumSlider = () => {
 
             {/* Background Image with Overlay */}
             <div className="absolute inset-0 z-0">
-                <img
+                <img  loading="lazy"
                     ref={imageRef}
                     src={slides[index].image}
                     className="w-full h-full object-cover opacity-40 transition-transform"

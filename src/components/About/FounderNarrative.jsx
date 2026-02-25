@@ -47,7 +47,7 @@ export const FounderNarrative = () => {
           {/* Founder Image Container */}
           <div className="w-full lg:w-1/2 relative">
             <div className="relative z-10 rounded-2xl overflow-hidden aspect-[3/4] shadow-2xl">
-              <img
+              <img  loading="lazy"
                 ref={imageRef}
                 src="https://i.postimg.cc/HxhHYbX8/anil-puri.jpg" // Replace with your actual image URL
                 alt="Founder"

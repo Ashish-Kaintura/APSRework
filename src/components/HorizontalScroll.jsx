@@ -22,14 +22,14 @@ const slides = [
     title: "Survelliance",
     subtitle:
       "Aps Tech support Is one of the leading? Electronic security and surveillance solutions provider in India and is a part of APS group. ",
-    img: service2,
+    img: service3,
   },
   {
     id: 3,
     title: "Traning",
     subtitle:
       "APS Training Academy The vertical of AP securitas was established in 2014. It provides solution of training, security, audit and consolation.",
-    img: service3,
+    img: service2,
   },
   {
     id: 4,
@@ -99,6 +99,7 @@ const HorizontalScroll = () => {
               {/* Image Side */}
               <div className="md:h-[60vh] overflow-hidden relative group">
                 <img
+                  loading="lazy"
                   src={slide.img}
                   alt={slide.title}
                   className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 grayscale hover:grayscale-0"

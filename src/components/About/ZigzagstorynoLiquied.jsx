@@ -92,7 +92,7 @@ export const ZigZagStory = () => {
       {/* The Traveling Image Container */}
       <div className="image-container-wrapper absolute top-0 left-0 w-full h-screen pointer-events-none z-10 hidden lg:flex items-center px-20">
         <div className="w-1/2 aspect-[4/5] overflow-hidden rounded-[40px] shadow-2xl bg-slate-100">
-          <img
+          <img  loading="lazy"
             src={content[0].image}
             alt="Traveling Visual"
             className="traveling-img w-full h-full object-cover"
@@ -123,7 +123,7 @@ export const ZigZagStory = () => {
 
               {/* Mobile Image (Visible only on small screens) */}
               <div className="lg:hidden w-full aspect-square rounded-3xl overflow-hidden my-8">
-                <img
+                <img  loading="lazy"
                   src={item.image}
                   className="w-full h-full object-cover"
                   alt={item.title}

@@ -16,6 +16,7 @@ import Scrollytelling from "../components/Scrollytelling";
 import IndiaParticleMap from "../components/IndiaParticleMap";
 import { FAQSection } from "../components/FAQsection";
 import { ClientTicker } from "../components/ClientTicker";
+import ParticlePortraitScroll from "../components/Particleportraitscroll";
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
       </section>
       <AboutSummary />
       <ClientTicker />
+      <ParticlePortraitScroll/>
       {/* <HeroSection/> */}
 
         <HorizontalScroll />

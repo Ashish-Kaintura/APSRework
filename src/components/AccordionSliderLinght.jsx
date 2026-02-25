@@ -79,7 +79,7 @@ const AccordionSliderLight = () => {
                         >
                             {/* Image & Overlay */}
                             <div className="absolute inset-0">
-                                <img
+                                <img  loading="lazy"
                                     src={slide.image}
                                     alt={slide.title}
                                     className={`w-full h-full object-cover transition-transform duration-1000 ${expandedIndex === i ? 'scale-105' : 'scale-110 grayscale brightness-75'
