@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { Shield, Eye, Building2, ArrowRight } from 'lucide-react';
 
-const slides = [
+export const slides = [
     {
         id: 1,
         title: "Manned Guarding",

@@ -25,7 +25,7 @@ export default function Home() {
       <HomeBanner />
       <section>
         {/* <PremiumSlider/> */}
-        <div className="">{/* <AccordionSlider /> */}</div>
+        {/* <AccordionSlider /> */}
       </section>
       <AboutSummary />
       <ClientTicker />

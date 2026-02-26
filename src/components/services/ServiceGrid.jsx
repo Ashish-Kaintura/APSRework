@@ -1,30 +1,29 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Shield, Building2, Cctv, ArrowRight } from "lucide-react";
-
+import image1 from "../../images/servicesImage/1.webp";
+import image2 from "../../images/servicesImage/3.webp";
+import image3 from "../../images/servicesImage/2.webp";
 const coreServices = [
   {
     id: "manned-guarding",
     title: "Manned Guarding Security",
     desc: "Deploying an elite force of rigorously trained professionals to protect your critical assets, personnel, and infrastructure with zero margin for error.",
-    image:
-      "https://images.unsplash.com/photo-1582139329536-e7284fece509?q=80&w=1000&auto=format&fit=crop",
+    image: image1,
     icon: <Shield size={28} />,
   },
   {
     id: "facility-management",
     title: "Integrated Facility Management",
     desc: "Comprehensive housekeeping, technical maintenance, and operational management to ensure your business environments operate at peak efficiency.",
-    image:
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1000&auto=format&fit=crop",
+    image: image2,
     icon: <Building2 size={28} />,
   },
   {
     id: "monitoring",
     title: "24/7 Monitoring",
     desc: "State-of-the-art surveillance and command center operations delivering real-time threat detection, response, and absolute peace of mind.",
-    image:
-      "https://images.unsplash.com/photo-1557597774-9d2739f85a76?q=80&w=1000&auto=format&fit=crop",
+    image: image3,
     icon: <Cctv size={28} />,
   },
 ];

@@ -190,17 +190,36 @@ export default function InteractiveIndiaMap() {
               color: "#111",
             }}
           >
-            Assembling <br /> India.
+            Why AP <br />
+            Securitas?
           </h1>
+          
+          <ul
+            style={{
+              fontFamily: "DM Sans, sans-serif",
+              color: "#666",
+              maxWidth: "80%",
+              lineHeight: "1.8",
+              listStyle: "none",
+              paddingLeft: 0,
+            }}
+          >
+            <li>• Nationwide operations across major cities</li>
+            <li>• Strong presence as a security agency in Delhi and security agency in Mumbai</li>
+            <li>• 24×7 centralized Command Centre</li>
+            <li>• Technology-driven guarding model</li>
+            <li>• Full statutory compliance</li>
+            <li>• Faster response, higher accountability</li>
+          </ul>
           <p
             style={{
               fontFamily: "DM Sans, sans-serif",
               color: "#666",
               maxWidth: "80%",
+              marginTop: "1.5rem",
             }}
           >
-            Move your cursor over the map to interact with the training data.
-            Scroll down to see the revolution take shape.
+            This is why clients recognise AP Securitas as one of the best security companies in Delhi and a trusted partner across India.
           </p>
         </div>
       </div>
