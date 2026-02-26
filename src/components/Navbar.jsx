@@ -37,17 +37,27 @@ const Navbar = () => {
 
   const dropdowns = {
     pilot: [
-      { name: "Man Guard", path: "/cpl-ground-classes" },
+      { name: "Man Guard", path: "/mangarding" },
       { name: "IFM", path: "/atpl-ground-classes" },
       { name: "Surveillance", path: "/atpl-oral-viva" },
-
-
     ],
     cabin: [
-      { name: "Hospitality Management", path: "/hospitality-aviation-mangement" },
-      { name: "Aviation, Hospitality and Travel Management", path: "/aviation-hospitality-travel-management" },
-      { name: "Hospitality, Travel & Customer Service", path: "/hospitality-travel-customer-service" },
-      { name: "Advance Certificate Course", path: "/advance-certificate-course" },
+      {
+        name: "Hospitality Management",
+        path: "/hospitality-aviation-mangement",
+      },
+      {
+        name: "Aviation, Hospitality and Travel Management",
+        path: "/aviation-hospitality-travel-management",
+      },
+      {
+        name: "Hospitality, Travel & Customer Service",
+        path: "/hospitality-travel-customer-service",
+      },
+      {
+        name: "Advance Certificate Course",
+        path: "/advance-certificate-course",
+      },
     ],
     services: [
       { name: "NSOP Management", path: "/nsop-management" },

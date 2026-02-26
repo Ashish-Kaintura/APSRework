@@ -169,6 +169,7 @@ export default function InteractiveIndiaMap() {
       >
         <canvas
           ref={canvasRef}
+          className="pt-32"
           style={{ width: "100%", height: "100%", cursor: "none" }}
         />
 

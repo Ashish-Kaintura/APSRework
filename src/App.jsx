@@ -12,6 +12,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import CustomCursor from "./components/CustomCursor";
 import { Footer } from "./components/Footer";
 import { ContactPage } from "./pages/ContactPage";
+import { MannedGuardingPage } from "./pages/MannedGuardingPage";
 
 
 const PremiumLandingPage = lazy(() => import("./pages/Home"));
@@ -133,6 +134,19 @@ function AppContent() {
                     transition={{ duration: 0.6 }}
                   >
                     <ContactPage />
+                  </motion.div>
+                }
+              />
+              <Route
+                path="/mangarding"
+                element={
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -40 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <MannedGuardingPage />
                   </motion.div>
                 }
               />
