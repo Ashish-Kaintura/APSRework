@@ -11,10 +11,13 @@ import Navbar from "./components/Navbar";
 import { motion, AnimatePresence } from "framer-motion";
 import CustomCursor from "./components/CustomCursor";
 import { Footer } from "./components/Footer";
+import { ContactPage } from "./pages/ContactPage";
+
 
 const PremiumLandingPage = lazy(() => import("./pages/Home"));
 const AboutPage = lazy(() => import("./pages/About"));
 const ServicesPage = lazy(() => import("./pages/Services"));
+const ContactPaeLazy = lazy(() => import("./pages/ContactPage"));
 
 /* ==============================
    ✅ This component CAN use useLocation
@@ -117,6 +120,19 @@ function AppContent() {
                     transition={{ duration: 0.6 }}
                   >
                     <ServicesPage />
+                  </motion.div>
+                }
+              />
+              <Route
+                path="/contact-us"
+                element={
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -40 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <ContactPage />
                   </motion.div>
                 }
               />

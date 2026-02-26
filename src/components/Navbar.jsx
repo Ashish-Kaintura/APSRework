@@ -166,7 +166,7 @@ const Navbar = () => {
             <NavLink to="/about-us">
               <li className="hover:text-Secondary">Blog</li>
             </NavLink>
-            <NavLink to="/about-us">
+            <NavLink to="/contact-us">
               <li className="hover:text-Secondary">Contact Us</li>
             </NavLink>
 

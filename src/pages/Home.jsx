@@ -17,26 +17,26 @@ import IndiaParticleMap from "../components/IndiaParticleMap";
 import { FAQSection } from "../components/FAQsection";
 import { ClientTicker } from "../components/ClientTicker";
 import ParticlePortraitScroll from "../components/Particleportraitscroll";
+import HomeBanner from "../components/Banner/HomeBanner";
 
 export default function Home() {
   return (
     <>
+      <HomeBanner />
       <section>
         {/* <PremiumSlider/> */}
-        <div className="">
-          <AccordionSlider />
-        </div>
+        <div className="">{/* <AccordionSlider /> */}</div>
       </section>
       <AboutSummary />
       <ClientTicker />
-      <ParticlePortraitScroll/>
+      <ParticlePortraitScroll />
       {/* <HeroSection/> */}
 
-        <HorizontalScroll />
-        <WhyChooseUs />
-        <Scrollytelling />
-        <VerticalSlider />
-        <TestimonialSection />
+      <HorizontalScroll />
+      <WhyChooseUs />
+      <Scrollytelling />
+      <VerticalSlider />
+      <TestimonialSection />
       <FAQSection />
       {/* <section className="h-96 bg-black"></section> */}
     </>
