@@ -11,6 +11,7 @@ import { IndustrialRecognition } from "../components/About/IndustrialRecognition
 import { LiquidZigZagStory } from "../components/About/ZigZagStory";
 import { ZigZagStory } from "../components/About/ZigzagstorynoLiquied";
 import { LeadershipSection } from "../components/About/LeadershipSection";
+import { PremiumZigZagStory } from "../components/About/PremiumZigZagStory";
 
 export default function About() {
   return (
@@ -22,7 +23,8 @@ export default function About() {
         <VisionStory />
         <LeadershipSection/>
         {/* <MissionValues /> */}
-        <LiquidZigZagStory />
+        <PremiumZigZagStory/>
+        {/* <LiquidZigZagStory /> */}
         {/* <ZigZagStory /> */}
         <JourneyRoadmap />
         {/* <NationalPresence /> */}

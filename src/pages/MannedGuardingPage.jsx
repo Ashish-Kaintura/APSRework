@@ -217,12 +217,13 @@ export const MannedGuardingPage = () => {
       </section>
 
       {/* 2. THE HUMAN ELEMENT (Intro) */}
-      <section className="py-20 lg:py-32 max-w-7xl mx-auto px-6">
+      <section className="py-20 lg:py-32 max-w-7xl mx-auto px-6 overflow-hidden">
         <div className="flex flex-col lg:flex-row gap-16 items-center">
+          {/* Left Side: Text Content (Remains mostly same) */}
           <motion.div
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }} // Added slight margin for better triggers
             variants={staggerContainer}
             className="w-full lg:w-1/2"
           >
@@ -254,18 +255,53 @@ export const MannedGuardingPage = () => {
               maintaining the integrity of your site.
             </motion.p>
           </motion.div>
-          <div className="w-full lg:w-1/2 relative h-[400px]">
-            <img
-              loading="lazy"
-              src={image2}
-              className="absolute top-0 right-10 w-2/3 h-[300px] object-cover shadow-2xl"
-              alt="Command Center"
-            />
-            <img
-              loading="lazy"
-              src={image3}
-              className="absolute bottom-0 left-0 w-2/3 h-[300px] object-cover shadow-2xl border-4 border-white"
-              alt="Security Guard"
+
+          {/* --- NEW, PREMIUM IMAGE LAYOUT DESIGN --- */}
+          <div className="w-full lg:w-1/2 relative h-[450px] lg:h-[550px] flex items-center justify-center">
+            {/* 1. Primary Focus Image (Human Guard) */}
+            <motion.div
+              initial={{ opacity: 0, x: 50, rotate: 3 }}
+              whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+              whileHover={{ scale: 1.02, zIndex: 30 }} // Lifts on hover for premium interaction
+              className="relative z-20 w-[60%] h-[70%] rounded-2xl overflow-hidden shadow-2xl shadow-slate-900/30 border-4 border-white cursor-pointer"
+            >
+              <img
+                loading="lazy"
+                src={image3} // Assuming image3 is the guard
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                alt="Rigorous Trained Security Guard"
+              />
+              {/* Subliminal Brand Accent */}
+              <div className="absolute bottom-0 left-0 h-1 bg-primary w-full" />
+            </motion.div>
+
+            {/* 2. Secondary Context Image (Command Center) - Now Cleanly Structured */}
+            <motion.div
+              initial={{ opacity: 0, x: -50, scale: 0.8 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1, ease: "circOut", delay: 0.6 }} // delayed entrance
+              className="absolute top-0 left-0 w-[55%] h-[55%] rounded-3xl overflow-hidden shadow-lg border-2 border-slate-100 group bg-white"
+            >
+              <img
+                loading="lazy"
+                src={image2} // Assuming image2 is command center
+                className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                alt="State-of-the-Art Command Center Operations"
+              />
+              {/* Subtle glass effect */}
+              <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            </motion.div>
+
+            {/* 3. Decorative Architectural Element for Depth */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 1 }}
+              className="absolute -bottom-6 -right-6 w-32 h-32 border-b-4 border-r-4 border-primary rounded-br-3xl opacity-30 z-0"
             />
           </div>
         </div>
