@@ -14,11 +14,12 @@ import { Footer } from "./components/Footer";
 import { ContactPage } from "./pages/ContactPage";
 import { MannedGuardingPage } from "./pages/MannedGuardingPage";
 
-
 const PremiumLandingPage = lazy(() => import("./pages/Home"));
 const AboutPage = lazy(() => import("./pages/About"));
 const ServicesPage = lazy(() => import("./pages/Services"));
 const ContactPaeLazy = lazy(() => import("./pages/ContactPage"));
+const Auth = lazy(() => import("./pages/AuthPage"));
+const Signup = lazy(() => import("./pages/SignupPage"));
 
 /* ==============================
    ✅ This component CAN use useLocation
@@ -147,6 +148,32 @@ function AppContent() {
                     transition={{ duration: 0.6 }}
                   >
                     <MannedGuardingPage />
+                  </motion.div>
+                }
+              />
+              <Route
+                path="/auth"
+                element={
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -40 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <Auth />
+                  </motion.div>
+                }
+              />
+              <Route
+                path="/signup"
+                element={
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -40 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <Signup />
                   </motion.div>
                 }
               />

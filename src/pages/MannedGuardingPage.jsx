@@ -159,7 +159,7 @@ export const MannedGuardingPage = () => {
   const [openFaq, setOpenFaq] = useState(0);
 
   return (
-    <main className="bg-white font-sans overflow-hidden">
+    <main className="bg-white font-sans overflow-hidden pt-16">
       {/* 1. HERO SECTION */}
       <section className="relative h-[85vh] bg-slate-950 flex items-center">
         <div className="absolute inset-0 z-0">
