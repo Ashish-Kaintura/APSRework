@@ -3,6 +3,10 @@ const mongoose = require("mongoose");
 const BlogSchema = new mongoose.Schema(
   {
     title: { type: String, required: true, unique: true },
+    metacanonical: String,
+    metatitle: String,
+    metadescription: String,
+    metakeywords: String,
     url: String,
     description: String,
     CoverImage: String,
@@ -12,10 +16,6 @@ const BlogSchema = new mongoose.Schema(
     shortdescription: String,
     longdescription: String,
     bgImage: String,
-    metacanonical: String,
-    metatitle: String,
-    metadescription: String,
-    metakeywords: String,
   },
   { timestamps: true }
 );

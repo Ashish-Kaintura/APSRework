@@ -31,5 +31,33 @@ router.put("/make-admin/:id", protect, superAdminOnly, async (req, res) => {
         user,
     });
 });
+// ✅ Super Admin - Update User
+router.put("/update/:id", protect, superAdminOnly, async (req, res) => {
+    try {
+        const { name, email, role } = req.body;
+
+        const updatedUser = await User.findByIdAndUpdate(
+            req.params.id,
+            { name, email, role },
+            { new: true }
+        ).select("-password");
+
+        res.json({
+            message: "User updated successfully",
+            user: updatedUser,
+        });
+    } catch (error) {
+        res.status(500).json({ message: "Update failed" });
+    }
+});
+// ✅ Super Admin - Delete Admin/User
+router.delete("/delete/:id", protect, superAdminOnly, async (req, res) => {
+    const user = await User.findByIdAndDelete(req.params.id);
+
+    res.json({
+        message: "User deleted successfully",
+        user,
+    });
+});
 
 module.exports = router;
