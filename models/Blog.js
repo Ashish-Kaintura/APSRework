@@ -23,6 +23,7 @@ const BlogSchema = new mongoose.Schema(
     schemaMarkup: mongoose.Schema.Types.Mixed, // JSON-LD
 
     // ===== BLOG CONTENT =====
+    category:String,
     shortdescription: String,
     longdescription: String,
     description: String,
