@@ -13,7 +13,11 @@ import CustomCursor from "./components/CustomCursor";
 import { Footer } from "./components/Footer";
 import { ContactPage } from "./pages/ContactPage";
 import { MannedGuardingPage } from "./pages/MannedGuardingPage";
-
+import ProtectedRoute from "./components/Auth/ProtectedRoute";
+import BlogPage from "./pages/BlogPage";
+import BlogDetailPage from "./pages/BlogDetailPage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+const ProfilePage = lazy(() => import("./pages/ProfilePage"));
 const PremiumLandingPage = lazy(() => import("./pages/Home"));
 const AboutPage = lazy(() => import("./pages/About"));
 const ServicesPage = lazy(() => import("./pages/Services"));
@@ -152,7 +156,7 @@ function AppContent() {
                 }
               />
               <Route
-                path="/auth"
+                path="/login"
                 element={
                   <motion.div
                     initial={{ opacity: 0, y: 40 }}
@@ -175,6 +179,60 @@ function AppContent() {
                   >
                     <Signup />
                   </motion.div>
+                }
+              />
+              <Route
+                path="/blog"
+                element={
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -40 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <BlogPage />
+                  </motion.div>
+                }
+              />
+              <Route
+                path="/blogdetail"
+                element={
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -40 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <BlogDetailPage />
+                  </motion.div>
+                }
+              />
+              <Route
+                path="/privacypolicy"
+                element={
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -40 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <PrivacyPolicyPage />
+                  </motion.div>
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <motion.div
+                      initial={{ opacity: 0, y: 40 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -40 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <ProfilePage />
+                    </motion.div>
+                  </ProtectedRoute>
                 }
               />
             </Routes>

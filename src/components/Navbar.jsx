@@ -18,6 +18,7 @@ const Navbar = () => {
   const [scrolling, setScrolling] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [user, setUser] = useState(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -41,37 +42,20 @@ const Navbar = () => {
       { name: "IFM", path: "/atpl-ground-classes" },
       { name: "Surveillance", path: "/atpl-oral-viva" },
     ],
-    cabin: [
-      {
-        name: "Hospitality Management",
-        path: "/hospitality-aviation-mangement",
-      },
-      {
-        name: "Aviation, Hospitality and Travel Management",
-        path: "/aviation-hospitality-travel-management",
-      },
-      {
-        name: "Hospitality, Travel & Customer Service",
-        path: "/hospitality-travel-customer-service",
-      },
-      {
-        name: "Advance Certificate Course",
-        path: "/advance-certificate-course",
-      },
-    ],
-    services: [
-      { name: "NSOP Management", path: "/nsop-management" },
-      { name: "DGCA/MOCA Liaison", path: "/dgca-moca-liaison" },
-      { name: "eGCA Account Management", path: "egca-account-management" },
-      { name: "JOB Placement Assistance", path: "/job-placement-assistance" },
-      { name: "Legal Assistance/Guidance", path: "/legal-assistance-guidance" },
-      { name: "Strategic Counselling", path: "/strategic-counselling" },
-      {
-        name: "Counselling (For Reappearance)",
-        path: "/counselling-for-reappearance",
-      },
-    ],
   };
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+ const handleLogout = () => {
+   localStorage.removeItem("token");
+   localStorage.removeItem("user");
+   setUser(null);
+   navigate("/login");
+ };
 
   const renderDropdown = (key) => (
     <div className="absolute top-full left-0 bg-white rounded shadow-md py-2 w-64 z-50">
@@ -139,8 +123,9 @@ const Navbar = () => {
 
       {/* Desktop Navbar */}
       <div
-        className={`hidden md:flex ${scrolling ? "w-[1180px]" : "w-full"
-          }  justify-center bg-gradient-to-r from-primary via-[#a0021c]   to-[#a9002d]  text-white shadow transition-all duration-300 uppercase`}
+        className={`hidden md:flex ${
+          scrolling ? "w-[1180px]" : "w-full"
+        }  justify-center bg-gradient-to-r from-primary via-[#a0021c]   to-[#a9002d]  text-white shadow transition-all duration-300 uppercase`}
       >
         <nav className="flex items-center justify-between w-full max-w-[1320px] px-4 py-2 relative">
           <Link to="/">
@@ -180,29 +165,49 @@ const Navbar = () => {
               <li className="hover:text-Secondary">Contact Us</li>
             </NavLink>
 
-
-
-
-
             {/* <NavLink to="/blog">
               <li className="hover:text-Secondary">Blog</li>
             </NavLink> */}
           </ul>
-          <div>
-            <button className="bg-Secondary text-white hover:text-white text-sm uppercase font-semibold px-4 py-2 rounded hover:bg-Lightcolor transition">
-              <Link to="/contact-us"> Login </Link>
-            </button>
-            <button className="bg-Secondary text-white hover:text-white text-sm uppercase font-semibold px-4 py-2 rounded hover:bg-Lightcolor transition">
-              <Link to="/contact-us"> Register </Link>
-            </button>
+          <div className="flex items-center gap-3">
+            {user ? (
+              <>
+                <span className="text-sm font-semibold">
+                  Hello, {user.name}
+                </span>
+
+                <button
+                  onClick={handleLogout}
+                  className="bg-Secondary text-white text-sm font-semibold px-4 py-2 rounded hover:bg-Lightcolor transition"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/login"
+                  className="bg-Secondary text-white text-sm font-semibold px-4 py-2 rounded hover:bg-Lightcolor transition"
+                >
+                  Login / Signup
+                </Link>
+
+                {/* <Link
+                  to="/register"
+                  className="bg-Secondary text-white text-sm font-semibold px-4 py-2 rounded hover:bg-Lightcolor transition"
+                >
+                  Register
+                </Link> */}
+              </>
+            )}
           </div>
         </nav>
-      </div >
+      </div>
 
       {/* Mobile Navbar */}
-      < div className="w-full md:hidden bg-primary text-white  shadow px-4 py-2" >
+      <div className="w-full md:hidden bg-primary text-white  shadow px-4 py-2">
         {/* Logo & Menu Button */}
-        <div div className="flex items-center justify-between" >
+        <div div className="flex items-center justify-between">
           <NavLink to="/">
             <img
               loading="lazy"
@@ -218,79 +223,46 @@ const Navbar = () => {
             className="cursor-pointer text-white"
             onClick={() => setMenuOpen(!menuOpen)}
           />
-        </div >
+        </div>
 
         {/* Menu Items */}
-        {
-          menuOpen && (
-            <div className="mt-4 animate-slideDown ">
-              <ul className="flex flex-col gap-3 text-base font-medium">
-                {/* About */}
-                <NavLink to="/">
-                  <li className="px-3 py-2 rounded hover:bg-gray-100 hover:text-primary">
-                    Home
-                  </li>
-                </NavLink>
-                {/* About */}
-                <NavLink to="/about-us">
-                  <li className="px-3 py-2 rounded hover:bg-gray-100 hover:text-primary">
-                    About Us
-                  </li>
-                </NavLink>
-
-                {/* Services */}
-                <li>
-                  <button className="flex w-full justify-between items-center px-3 py-2 rounded hover:bg-gray-100 hover:text-primary">
-                    <NavLink to="/pilot-training">
-                      <span>Services</span>{" "}
-                    </NavLink>
-                    {openDropdown === "pilot" ? (
-                      <FaChevronUp
-                        onClick={() => toggleDropdown("pilot")}
-                        size={14}
-                      />
-                    ) : (
-                      <FaChevronDown
-                        onClick={() => toggleDropdown("pilot")}
-                        size={14}
-                      />
-                    )}
-                  </button>
-                  {openDropdown === "pilot" && (
-                    <ul className="ml-4 mt-2 space-y-2 border-l-2 border-indigo-200 pl-3">
-                      {dropdowns.pilot.map((item) => (
-                        <NavLink key={item.name} to={item.path}>
-                          <li className="px-2 py-1 rounded hover:bg-indigo-50 hover:text-indigo-700">
-                            {item.name}
-                          </li>
-                        </NavLink>
-                      ))}
-                    </ul>
-                  )}
+        {menuOpen && (
+          <div className="mt-4 animate-slideDown ">
+            <ul className="flex flex-col gap-3 text-base font-medium">
+              {/* About */}
+              <NavLink to="/">
+                <li className="px-3 py-2 rounded hover:bg-gray-100 hover:text-primary">
+                  Home
                 </li>
+              </NavLink>
+              {/* About */}
+              <NavLink to="/about-us">
+                <li className="px-3 py-2 rounded hover:bg-gray-100 hover:text-primary">
+                  About Us
+                </li>
+              </NavLink>
 
-                {/* Cabin Crew */}
-                {/* <li>
+              {/* Services */}
+              <li>
                 <button className="flex w-full justify-between items-center px-3 py-2 rounded hover:bg-gray-100 hover:text-primary">
-                  <NavLink to="/cabin-crew-training">
-                    {" "}
-                    <span>Cabin Crew Training</span>{" "}
+                  <NavLink to="/pilot-training">
+                    <span>Services</span>{" "}
                   </NavLink>
-                  {openDropdown === "cabin" ? (
+                  {openDropdown === "pilot" ? (
                     <FaChevronUp
-                      onClick={() => toggleDropdown("cabin")}
+                      onClick={() => toggleDropdown("pilot")}
                       size={14}
                     />
                   ) : (
                     <FaChevronDown
-                      onClick={() => toggleDropdown("cabin")}
+                      onClick={() => toggleDropdown("pilot")}
                       size={14}
                     />
                   )}
                 </button>
-                {openDropdown === "cabin" && (
+                {openDropdown === "pilot" && (
                   <ul className="ml-4 mt-2 space-y-2 border-l-2 border-indigo-200 pl-3">
-                    {dropdowns.cabin.map((item) => (
+                    {dropdowns.pilot.map((item) => (
                       <NavLink key={item.name} to={item.path}>
                         <li className="px-2 py-1 rounded hover:bg-indigo-50 hover:text-indigo-700">
                           {item.name}
@@ -299,57 +271,56 @@ const Navbar = () => {
                     ))}
                   </ul>
                 )}
-              </li> */}
+              </li>
 
-                {/* Services */}
-                <li>
-                  <button className="flex w-full justify-between items-center px-3 py-2 rounded hover:bg-gray-100 hover:text-primary">
-                    <NavLink to="/services-expertise">
-                      {" "}
-                      <span>Services & Expertise</span>{" "}
-                    </NavLink>
-                    {openDropdown === "services" ? (
-                      <FaChevronUp
-                        onClick={() => toggleDropdown("services")}
-                        size={14}
-                      />
-                    ) : (
-                      <FaChevronDown
-                        onClick={() => toggleDropdown("services")}
-                        size={14}
-                      />
-                    )}
-                  </button>
-                  {openDropdown === "services" && (
-                    <ul className="ml-4 mt-2 space-y-2 border-l-2 border-indigo-200 pl-3">
-                      {dropdowns.services.map((item) => (
-                        <NavLink key={item.name} to={item.path}>
-                          <li className="px-2 py-1 rounded hover:bg-indigo-50 hover:text-indigo-700">
-                            {item.name}
-                          </li>
-                        </NavLink>
-                      ))}
-                    </ul>
+              {/* Services */}
+              <li>
+                <button className="flex w-full justify-between items-center px-3 py-2 rounded hover:bg-gray-100 hover:text-primary">
+                  <NavLink to="/services-expertise">
+                    {" "}
+                    <span>Services & Expertise</span>{" "}
+                  </NavLink>
+                  {openDropdown === "services" ? (
+                    <FaChevronUp
+                      onClick={() => toggleDropdown("services")}
+                      size={14}
+                    />
+                  ) : (
+                    <FaChevronDown
+                      onClick={() => toggleDropdown("services")}
+                      size={14}
+                    />
                   )}
+                </button>
+                {openDropdown === "services" && (
+                  <ul className="ml-4 mt-2 space-y-2 border-l-2 border-indigo-200 pl-3">
+                    {dropdowns.services.map((item) => (
+                      <NavLink key={item.name} to={item.path}>
+                        <li className="px-2 py-1 rounded hover:bg-indigo-50 hover:text-indigo-700">
+                          {item.name}
+                        </li>
+                      </NavLink>
+                    ))}
+                  </ul>
+                )}
+              </li>
+
+              {/* Contact */}
+              <NavLink to="/contact-us">
+                <li className="px-3 py-2 rounded hover:bg-gray-100 hover:text-primary">
+                  Contact Us
                 </li>
+              </NavLink>
+            </ul>
 
-                {/* Contact */}
-                <NavLink to="/contact-us">
-                  <li className="px-3 py-2 rounded hover:bg-gray-100 hover:text-primary">
-                    Contact Us
-                  </li>
-                </NavLink>
-              </ul>
-
-              {/* CTA Button */}
-              <button className="mt-6 w-full bg-white text-primary font-semibold px-4 py-3 rounded-lg shadow hover:bg-gray-200 transition">
-                Make Appointment
-              </button>
-            </div>
-          )
-        }
-      </div >
-    </div >
+            {/* CTA Button */}
+            <button className="mt-6 w-full bg-white text-primary font-semibold px-4 py-3 rounded-lg shadow hover:bg-gray-200 transition">
+              Make Appointment
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 
