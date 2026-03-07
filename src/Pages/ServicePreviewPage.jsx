@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import * as FaIcons from "react-icons/fa";
+import * as SiIcons from "react-icons/si";
+import * as GiIcons from "react-icons/gi";
+import * as MdIcons from "react-icons/md";
 const API = "http://localhost:5000/api/services";
 const IMAGE_BASE_URL = "http://localhost:5000/"; // Adjust if your static folder is served differently
 
@@ -149,7 +152,7 @@ export default function ServicePreviewPage() {
             (service.shortSummary.title ||
               service.shortSummary.image1 ||
               service.shortSummary.image2) && (
-              <section className="bg-gray-50 p-6 rounded-xl border">
+              <section className="bg-gray-50 p-6 rounded-xl border overflow-scroll">
                 <h2 className="text-sm font-bold text-red-600 uppercase mb-4">
                   Short Summary
                 </h2>
@@ -196,7 +199,7 @@ export default function ServicePreviewPage() {
           {/* SERVICES SECTION */}
           {service.servicesSection &&
             service.servicesSection.services?.length > 0 && (
-              <section className="bg-gray-50 p-6 rounded-xl border">
+              <section className="bg-gray-50 p-6 rounded-xl border overflow-scroll">
                 <h2 className="text-sm font-bold text-red-600 uppercase mb-2">
                   Services List
                 </h2>
@@ -207,17 +210,24 @@ export default function ServicePreviewPage() {
                   {service.servicesSection.shortSummary}
                 </p>
                 <div className="grid grid-cols-2 gap-4">
-                  {service.servicesSection.services.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="p-4 bg-white border rounded shadow-sm flex items-center gap-3"
-                    >
-                      {item.icon && (
-                        <span className="text-2xl">{item.icon}</span>
-                      )}
-                      <span className="font-bold">{item.name}</span>
-                    </div>
-                  ))}
+                  {service.servicesSection.services.map((item, idx) => {
+                    const IconComponent =
+                      FaIcons[item.icon] ||
+                      SiIcons[item.icon] ||
+                      GiIcons[item.icon] ||
+                      MdIcons[item.icon];
+                    return (
+                      <div
+                        key={idx}
+                        className="p-4 bg-white border rounded shadow-sm flex items-center gap-3"
+                      >
+                        {IconComponent && (
+                          <IconComponent className="text-red-600" size={40} />
+                        )}
+                        <span className="font-bold">{item.name}</span>
+                      </div>
+                    );
+                  })}
                 </div>
               </section>
             )}
@@ -225,7 +235,7 @@ export default function ServicePreviewPage() {
           {/* SPECIAL SERVICES SECTION */}
           {service.specialServicesSection &&
             service.specialServicesSection.services?.length > 0 && (
-              <section className="bg-gray-50 p-6 rounded-xl border">
+              <section className="bg-gray-50 p-6 rounded-xl border overflow-scroll">
                 <h2 className="text-sm font-bold text-red-600 uppercase mb-2">
                   Special Services
                 </h2>
@@ -233,18 +243,27 @@ export default function ServicePreviewPage() {
                   {service.specialServicesSection.title}
                 </h3>
                 <div className="space-y-4">
-                  {service.specialServicesSection.services.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="p-4 bg-white border rounded shadow-sm"
-                    >
-                      <h4 className="font-bold flex items-center gap-2">
-                        {item.icon && <span>{item.icon}</span>}
-                        {item.title}
-                      </h4>
-                      <p className="text-gray-600 mt-2">{item.description}</p>
-                    </div>
-                  ))}
+                  {service.specialServicesSection.services.map((item, idx) => {
+                    const IconComponent =
+                      FaIcons[item.icon] ||
+                      SiIcons[item.icon] ||
+                      GiIcons[item.icon] ||
+                      MdIcons[item.icon];
+                    return (
+                      <div
+                        key={idx}
+                        className="p-4 bg-white border rounded shadow-sm"
+                      >
+                        <h4 className="font-bold flex items-center gap-2">
+                          {IconComponent && (
+                            <IconComponent className="text-red-600" size={40} />
+                          )}
+                          {item.title}
+                        </h4>
+                        <p className="text-gray-600 mt-2">{item.description}</p>
+                      </div>
+                    );
+                  })}
                 </div>
               </section>
             )}
