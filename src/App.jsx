@@ -17,6 +17,7 @@ import ProtectedRoute from "./components/Auth/ProtectedRoute";
 import BlogPage from "./pages/BlogPage";
 import BlogDetailPage from "./pages/BlogDetailPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import { ServiceDetailPage } from "./pages/ServiceDetailPage";
 const ProfilePage = lazy(() => import("./pages/ProfilePage"));
 const PremiumLandingPage = lazy(() => import("./pages/Home"));
 const AboutPage = lazy(() => import("./pages/About"));
@@ -130,6 +131,19 @@ function AppContent() {
                 }
               />
               <Route
+                path="/services/:slug"
+                element={
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -40 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    <ServiceDetailPage />
+                  </motion.div>
+                }
+              />
+              <Route
                 path="/contact-us"
                 element={
                   <motion.div
@@ -155,7 +169,7 @@ function AppContent() {
                   </motion.div>
                 }
               />
-              <Route
+              {/* <Route
                 path="/login"
                 element={
                   <motion.div
@@ -180,7 +194,7 @@ function AppContent() {
                     <Signup />
                   </motion.div>
                 }
-              />
+              /> */}
               <Route
                 path="/blog"
                 element={
@@ -220,7 +234,7 @@ function AppContent() {
                   </motion.div>
                 }
               />
-              <Route
+              {/* <Route
                 path="/profile"
                 element={
                   <ProtectedRoute>
@@ -234,7 +248,7 @@ function AppContent() {
                     </motion.div>
                   </ProtectedRoute>
                 }
-              />
+              /> */}
             </Routes>
           </AnimatePresence>
         </Suspense>
