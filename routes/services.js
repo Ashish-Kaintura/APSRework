@@ -4,7 +4,7 @@ const Service = require("../models/Service");
 const fs = require("fs");
 const path = require("path");
 const upload = require("../middleware/upload");
-
+const BASE_URL = "http://localhost:5000";
 // ==========================================
 // MIDDLEWARE: Handle Multiple Uploads
 // ==========================================
