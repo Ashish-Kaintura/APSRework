@@ -46,7 +46,7 @@ export const ServiceGrid = () => {
         const resp = await fetch(API, { signal: controller.signal });
         if (!resp.ok) {
           throw new Error(`API returned status ${resp.status}`);
-        }
+        }                                                 
         const data = await resp.json();
         setServices(data);
       } catch (err) {
