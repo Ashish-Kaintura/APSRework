@@ -127,13 +127,13 @@ export default function HomeBanner() {
             }`}
             style={{ transitionDelay: "400ms" }}
           >
-            {current.icon ? (
+            {/* {current.icon ? (
               React.cloneElement(current.icon, {
                 className: "w-8 h-8 text-primary",
               })
             ) : (
               <MapPin className="w-8 h-8 text-primary" />
-            )}
+            )} */}
             <h1 className="text-5xl sm:text-7xl lg:text-8xl font-bold text-white tracking-tight">
               {current.location}
             </h1>

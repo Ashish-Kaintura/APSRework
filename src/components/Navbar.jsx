@@ -39,7 +39,7 @@ const Navbar = () => {
   const dropdowns = {
     pilot: [
       { name: "Man Guard", path: "/mangarding" },
-      { name: "IFM", path: "/atpl-ground-classes" },
+      { name: "IFM", path: "/services/integrated-facility-management" },
       { name: "Surveillance", path: "/atpl-oral-viva" },
     ],
   };

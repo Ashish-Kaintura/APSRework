@@ -208,8 +208,9 @@ function AppContent() {
                   </motion.div>
                 }
               />
+             
               <Route
-                path="/blogdetail"
+                path="/blog/:slug"
                 element={
                   <motion.div
                     initial={{ opacity: 0, y: 40 }}

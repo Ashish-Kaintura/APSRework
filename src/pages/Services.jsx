@@ -54,8 +54,8 @@ export default function Services() {
     <>
       <ServiceHero />
       <ServiceGrid />
-      <section className="relative h-screen min-h-[800px] bg-slate-950 text-white overflow-hidden font-sans flex flex-col justify-center">
-        {/* --- Safely Wrapped Animated Background --- */}
+      {/* <section className="relative h-screen min-h-[800px] bg-slate-950 text-white overflow-hidden font-sans flex flex-col justify-center">
+      
         <AnimatePresence mode="wait">
           <motion.div
             key={activeService.id}
@@ -73,13 +73,12 @@ export default function Services() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Gradient Overlay for Readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-slate-950/40 z-0" />
 
-        {/* Main Content */}
+     
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
-          {/* Left Side: Navigation List */}
+   
           <div className="w-full lg:w-1/2 space-y-2">
             <div className="mb-10 lg:mb-12">
               <div className="flex items-center gap-3 mb-4">
@@ -125,7 +124,7 @@ export default function Services() {
             </div>
           </div>
 
-          {/* Right Side: Active Content Display Case */}
+  
           <div className="w-full lg:w-1/2 min-h-[350px] flex items-center">
             <AnimatePresence mode="wait">
               <motion.div
@@ -154,7 +153,8 @@ export default function Services() {
             </AnimatePresence>
           </div>
         </div>
-      </section>
+      </section> 
+      \*/}
 
       <AboutCTA />
     </>
