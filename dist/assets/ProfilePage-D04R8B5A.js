@@ -1,0 +1,1 @@
+import{j as e}from"./index-Btsb4O4W.js";function r(){return e.jsx("div",{className:"min-h-screen flex items-center justify-center",children:e.jsx("h1",{className:"text-3xl font-bold",children:"Welcome to Profile Page 🔐"})})}export{r as default};

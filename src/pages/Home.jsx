@@ -18,6 +18,9 @@ import { FAQSection } from "../components/FAQsection";
 import { ClientTicker } from "../components/ClientTicker";
 import ParticlePortraitScroll from "../components/Particleportraitscroll";
 import HomeBanner from "../components/Banner/HomeBanner";
+import ScrollPresentation from "../components/ScrollPresentation";
+import ScrollyAnimation from "../components/ScrollyAnimation";
+import CarbonScrollEffect from "../components/CarbonScrollEffect";
 
 export default function Home() {
   return (
@@ -34,8 +37,11 @@ export default function Home() {
 
       <HorizontalScroll />
       <WhyChooseUs />
-      <Scrollytelling />
-      <VerticalSlider />
+
+      {/* <ScrollPresentation /> */}
+      <CarbonScrollEffect />
+      {/* <Scrollytelling /> */}
+      {/* <VerticalSlider /> */}
       <TestimonialSection />
       <FAQSection />
       {/* <section className="h-96 bg-black"></section> */}
