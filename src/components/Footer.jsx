@@ -9,6 +9,7 @@ import {
   Linkedin,
   ArrowUp,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -48,18 +49,19 @@ export const Footer = () => {
           {/* Quick Links */}
           <div className="space-y-6">
             <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
-              Services
+              Quick Link
             </h4>
             <ul className="space-y-3 text-slate-400 text-sm">
+              <li className="hover:text-white transition-colors cursor-pointer">
+                Services
+              </li>
               <li className="hover:text-white transition-colors cursor-pointer">
                 Manned Guarding
               </li>
               <li className="hover:text-white transition-colors cursor-pointer">
                 Facility Management
               </li>
-              <li className="hover:text-white transition-colors cursor-pointer">
-                Banking Security
-              </li>
+
               <li className="hover:text-white transition-colors cursor-pointer">
                 24x7 Monitoring
               </li>
@@ -73,10 +75,10 @@ export const Footer = () => {
             </h4>
             <ul className="space-y-3 text-slate-400 text-sm">
               <li className="hover:text-white transition-colors cursor-pointer">
-                Our Story
+                About
               </li>
               <li className="hover:text-white transition-colors cursor-pointer">
-                Presence in 27 States
+                Contact
               </li>
               <li className="hover:text-white transition-colors cursor-pointer">
                 Careers
@@ -111,8 +113,17 @@ export const Footer = () => {
 
         {/* Bottom Bar: Copyright & Scroll to Top */}
         <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-slate-500 text-[10px] lg:text-xs uppercase tracking-widest text-center">
+          <p className="text-slate-500 text-[10px] lg:text-xs uppercase tracking-widest ">
             © {currentYear} APS Group India. 39 Years of Unmatched Protection.
+            <br /> <br />
+            <span className="text-slate-500 text-[10px] lg:text-xs uppercase tracking-widest text-start">
+              Design And Develop By{" "}
+              <Link
+              target="_blank"
+              to="https://ashish-kaintura-folio.netlify.app/">
+                <strong> Ashish Kaintura</strong>
+              </Link>
+            </span>
           </p>
 
           <motion.button

@@ -7,8 +7,8 @@ import * as FaIcons from "react-icons/fa";
 import * as SiIcons from "react-icons/si";
 import * as GiIcons from "react-icons/gi";
 import * as MdIcons from "react-icons/md";
-const API = "http://localhost:5000/api/services";
-const IMAGE_BASE_URL = "http://localhost:5000/";
+const API = import.meta.env.VITE_API_URL;
+const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
 export const ServiceDetailPage = () => {
   const { slug } = useParams();
 
@@ -66,7 +66,7 @@ export const ServiceDetailPage = () => {
   }
 
   return (
-    <main className="bg-white font-sans overflow-hidden pt-16">
+    <main className="bg-white font-sans overflow-hidden pt-16 ">
       {/* HERO SECTION */}
 
       <section className="relative h-[85vh] bg-slate-950 flex items-center">
@@ -77,7 +77,7 @@ export const ServiceDetailPage = () => {
             alt={service?.banner?.bannerTitle}
             className="w-full h-full object-cover opacity-30"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/10 via-slate-950/10 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/5 via-slate-950/ to-transparent" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
@@ -183,48 +183,48 @@ export const ServiceDetailPage = () => {
           </motion.div>
 
           {/* --- NEW, PREMIUM IMAGE LAYOUT DESIGN --- */}
-          <div className="w-full lg:w-1/2 relative h-[450px] lg:h-[550px] flex items-center justify-center">
-            {/* 1. Primary Focus Image (Human Guard) */}
+          <div className="w-full lg:w-1/2 relative h-[400px] sm:h-[450px] lg:h-[550px]">
+            {/* 2. Secondary Context Image (Background / Top-Left) */}
             <motion.div
-              initial={{ opacity: 0, x: 50, rotate: 3 }}
-              whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+              initial={{ opacity: 0, x: -40, y: -20, scale: 0.9 }}
+              whileInView={{ opacity: 1, x: 0, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
-              whileHover={{ scale: 1.02, zIndex: 30 }} // Lifts on hover for premium interaction
-              className="relative z-20 w-[60%] h-[70%] rounded-2xl overflow-hidden shadow-2xl shadow-slate-900/30 border-4 border-white cursor-pointer"
+              transition={{ duration: 1, ease: "circOut", delay: 0.6 }}
+              className="absolute top-0 left-0 w-[65%] h-[70%] rounded-3xl overflow-hidden shadow-lg border-2 border-slate-100 group bg-white hover:z-20"
             >
               <img
                 loading="lazy"
-                src={`${IMAGE_BASE_URL}${service?.shortSummary?.image1}`}
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                alt="Rigorous Trained Security Guard"
-              />
-              {/* Subliminal Brand Accent */}
-              <div className="absolute bottom-0 left-0 h-1 bg-primary w-full" />
-            </motion.div>
-
-            {/* 2. Secondary Context Image (Command Center) - Now Cleanly Structured */}
-            <motion.div
-              initial={{ opacity: 0, x: -50, scale: 0.8 }}
-              whileInView={{ opacity: 1, x: 0, scale: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, ease: "circOut", delay: 0.6 }} // delayed entrance
-              className="absolute top-0 left-0 w-[55%] h-[55%] rounded-3xl overflow-hidden shadow-lg border-2 border-slate-100 group bg-white"
-            >
-              <img
-                loading="lazy"
-                src={`${IMAGE_BASE_URL}${service?.shortSummary?.image2}`} // Assuming image2 is command center
-                className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
-                alt="State-of-the-Art Command Center Operations"
+                src={`${IMAGE_BASE_URL}${service?.shortSummary?.image2}`} // Background Context
+                className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 "
+                alt={service.title}
               />
               {/* Subtle glass effect */}
-              <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="absolute inset-0 bg-white/10 backdrop-blur-[2px] opacity-0 group-hover:opacity-0 transition-opacity duration-700 " />
+            </motion.div>
+
+            {/* 1. Primary Focus Image (Foreground / Bottom-Right) */}
+            <motion.div
+              initial={{ opacity: 0, x: 40, y: 40 }}
+              whileInView={{ opacity: 1, x: 0, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+              whileHover={{ scale: 1.03 }}
+              className="absolute bottom-0 right-0 w-[60%] h-[75%] rounded-2xl overflow-hidden shadow-2xl shadow-slate-900/30 border-4 border-white cursor-pointer z-10"
+            >
+              <img
+                loading="lazy"
+                src={`${IMAGE_BASE_URL}${service?.shortSummary?.image1}`} // Foreground Focus
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                alt={service.title}
+              />
+              {/* Subliminal Brand Accent */}
+              <div className="absolute bottom-0 left-0 h-1.5 bg-primary w-full" />
             </motion.div>
 
             {/* 3. Decorative Architectural Element for Depth */}
             <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 1 }}
               className="absolute -bottom-6 -right-6 w-32 h-32 border-b-4 border-r-4 border-primary rounded-br-3xl opacity-30 z-0"

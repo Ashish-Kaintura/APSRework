@@ -1,8 +1,6 @@
-import React, { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronRight } from "lucide-react";
 
 const roadmapData = [
   {
@@ -68,106 +66,172 @@ const roadmapData = [
 ];
 
 export const JourneyRoadmap = () => {
-  const sectionRef = useRef(null);
-  const lineRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const sliderRef = useRef(null);
 
+  // Optional: Auto-play the timeline (Advances every 4 seconds)
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Animate the vertical progress line
-      gsap.fromTo(
-        lineRef.current,
-        { height: "0%" },
-        {
-          height: "100%",
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".roadmap-container",
-            start: "top 20%",
-            end: "bottom 80%",
-            scrub: 1,
-          },
-        },
+    if (isHovered) return;
+    const interval = setInterval(() => {
+      setActiveIndex((current) =>
+        current === roadmapData.length - 1 ? 0 : current + 1,
       );
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [isHovered]);
 
-      // Animate each roadmap item
-      gsap.utils.toArray(".roadmap-item").forEach((item) => {
-        gsap.from(item, {
-          scrollTrigger: {
-            trigger: item,
-            start: "top 85%",
-            toggleActions: "restart none none none",
-          },
-          opacity: 0,
-          x: -30,
-          duration: 0.8,
-          ease: "power2.out",
-        });
-      });
-    }, sectionRef);
+  // Center the active item in the scrollable track
+  useEffect(() => {
+    if (sliderRef.current) {
+      const activeElement = sliderRef.current.children[activeIndex];
+      if (activeElement) {
+        const scrollLeft =
+          activeElement.offsetLeft -
+          sliderRef.current.offsetWidth / 2 +
+          activeElement.offsetWidth / 2;
+        sliderRef.current.scrollTo({ left: scrollLeft, behavior: "smooth" });
+      }
+    }
+  }, [activeIndex]);
 
-    return () => ctx.revert();
-  }, []);
+  const activeItem = roadmapData[activeIndex];
 
   return (
-    <section
-      ref={sectionRef}
-      className="py-20 bg-white font-sans overflow-hidden"
-    >
-      <div className="max-w-5xl mx-auto px-6">
-        {/* Header - Compact Premium */}
-        <div className="mb-20 text-center">
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <span className="h-[1px] w-8 bg-primary"></span>
-            <span className="text-primary font-bold uppercase tracking-[0.3em] text-[10px]">
-              Road Map
-            </span>
-            <span className="h-[1px] w-8 bg-primary"></span>
+    <section className="py-24 bg-slate-50 font-sans overflow-hidden">
+      {/* Hide Scrollbar CSS injection */}
+      <style>{`
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
+
+      <div className="max-w-6xl mx-auto px-6">
+        {/* --- Header --- */}
+        <div className="mb-16 text-center lg:text-left flex flex-col lg:flex-row justify-between items-end gap-6">
+          <div>
+            <div className="flex items-center justify-center lg:justify-start gap-3 mb-4">
+              <span className="h-[2px] w-8 bg-primary"></span>
+              <span className="text-primary font-black uppercase tracking-[0.3em] text-[10px]">
+                A Legacy of Trust
+              </span>
+            </div>
+            <h2 className="text-4xl lg:text-6xl font-black text-slate-900 leading-tight tracking-tighter uppercase">
+              Journey <span className="text-slate-400 italic">So Far.</span>
+            </h2>
           </div>
-          <h2 className="text-3xl lg:text-5xl font-black text-slate-900 leading-tight tracking-tighter">
-            JOURNEY <span className="text-primary">SO FAR.</span>
-          </h2>
+          <p className="text-slate-500 font-medium text-sm max-w-sm lg:text-right">
+            Four decades of innovation, acquisitions, and setting the gold
+            standard in Indian security.
+          </p>
         </div>
 
-        {/* Roadmap Container */}
-        <div className="roadmap-container relative">
-          {/* Vertical Background Line */}
-          <div className="absolute left-4 md:left-1/2 top-0 w-[2px] h-full bg-slate-100 -translate-x-1/2 z-0" />
+        <div
+          className="relative bg-white rounded-[40px] shadow-2xl shadow-slate-200/50 border border-slate-100 p-8 lg:p-12"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {/* --- Interactive Horizontal Track --- */}
+          <div className="relative mb-12 lg:mb-16">
+            {/* Background Line */}
+            <div className="absolute top-5 left-0 w-full h-[2px] bg-slate-100 z-0" />
 
-          {/* Animated Progress Line */}
-          <div
-            ref={lineRef}
-            className="absolute left-4 md:left-1/2 top-0 w-[2px] bg-primary -translate-x-1/2 z-0"
-          />
+            {/* Scrollable Container */}
+            <div
+              ref={sliderRef}
+              className="relative z-10 flex items-center overflow-x-auto hide-scrollbar snap-x snap-mandatory py-2 scroll-smooth"
+            >
+              {roadmapData.map((item, index) => {
+                const isActive = index === activeIndex;
+                const isPassed = index < activeIndex;
 
-          {/* Timeline Items */}
-          <div className="space-y-12">
-            {roadmapData.map((item, i) => (
-              <div
-                key={i}
-                className={`roadmap-item relative flex items-center justify-start md:justify-between w-full ${
-                  i % 2 === 0 ? "md:flex-row-reverse" : ""
-                }`}
-              >
-                {/* Dot on the line */}
-                <div className="absolute left-4 md:left-1/2 w-3 h-3 bg-white border-2 border-primary rounded-full -translate-x-1/2 z-10 shadow-[0_0_10px_rgba(236,108,114,0.5)]" />
+                return (
+                  <button
+                    key={index}
+                    onClick={() => setActiveIndex(index)}
+                    className="group relative flex flex-col items-center justify-center min-w-[120px] lg:min-w-[160px] snap-center focus:outline-none"
+                  >
+                    {/* The Dot */}
+                    <div
+                      className={`w-8 h-8 rounded-full flex items-center justify-center border-[3px] transition-all duration-500 mb-4 z-10
+                      ${
+                        isActive
+                          ? "bg-primary border-primary shadow-[0_0_15px_rgba(236,108,114,0.5)] scale-110"
+                          : isPassed
+                            ? "bg-slate-900 border-slate-900"
+                            : "bg-white border-slate-200 group-hover:border-primary/50"
+                      }
+                    `}
+                    >
+                      <div
+                        className={`w-2.5 h-2.5 rounded-full transition-colors ${isActive ? "bg-white" : isPassed ? "bg-slate-900" : "bg-transparent"}`}
+                      />
+                    </div>
 
-                {/* Content Card */}
-                <div className="ml-12 md:ml-0 md:w-[45%] p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:border-primary/30 transition-colors shadow-sm">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-primary font-black text-xl lg:text-2xl italic tracking-tighter">
+                    {/* Connecting Line Fill (Dynamic) */}
+                    {index !== 0 && (
+                      <div
+                        className={`absolute top-4 right-[50%] w-full h-[2px] -z-10 transition-colors duration-500 
+                        ${isActive || isPassed ? "bg-slate-900" : "bg-transparent"}`}
+                      />
+                    )}
+
+                    {/* Year Label */}
+                    <span
+                      className={`text-xs font-black uppercase tracking-widest transition-colors duration-300
+                      ${isActive ? "text-primary scale-110" : isPassed ? "text-slate-900" : "text-slate-400 group-hover:text-slate-600"}
+                    `}
+                    >
                       {item.year}
                     </span>
-                    <div className="h-[1px] flex-grow bg-slate-200" />
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* --- Dynamic Content Display Box --- */}
+          <div className="relative min-h-[220px] lg:min-h-[180px] bg-slate-50 rounded-3xl p-8 lg:p-10 border border-slate-100 flex items-center overflow-hidden">
+            {/* Decorative Background Element */}
+            <div className="absolute -right-5 bottom-0 text-[200px] font-black text-slate-900/[0.03] leading-none pointer-events-none select-none">
+              {activeItem.year.split("-")[0]}
+            </div> 
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeItem.year}
+                initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -20, filter: "blur(4px)" }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="relative z-10 w-full bg"
+              >
+                <div className="flex flex-col lg:flex-row gap-6 lg:gap-12 items-start lg:items-center">
+                  {/* Left: Large Year Display */}
+                  <div className="shrink-0 border-l-4 border-primary pl-6">
+                    <h3 className="text-4xl lg:text-6xl font-black text-slate-900 tracking-tighter leading-none mb-2">
+                      {activeItem.year}
+                    </h3>
+                    <span className="text-primary font-bold uppercase tracking-[0.2em] text-[10px]">
+                      Milestone Reached
+                    </span>
                   </div>
-                  <h4 className="text-sm lg:text-base font-black text-slate-900 uppercase tracking-tight mb-2">
-                    {item.title}
-                  </h4>
-                  <p className="text-slate-500 text-[11px] lg:text-xs leading-relaxed font-medium">
-                    {item.desc}
-                  </p>
+
+                  {/* Right: Description */}
+                  <div className="flex-grow">
+                    <h4 className="text-xl lg:text-2xl font-black text-slate-900 uppercase tracking-tight mb-3">
+                      {activeItem.title}
+                    </h4>
+                    <p className="text-slate-600 text-sm lg:text-base leading-relaxed font-medium max-w-2xl">
+                      {activeItem.desc}
+                    </p>
+                  </div>
+
+                  <button className="shrink-0 w-12 h-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-primary hover:text-white hover:border-primary transition-all duration-300">
+                    <ChevronRight size={20} />
+                  </button>
                 </div>
-              </div>
-            ))}
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>

@@ -19,16 +19,16 @@ const slides = [
   },
   {
     id: 2,
-    title: "Survelliance",
+    title: "Surveillance ",
     subtitle:
       "Aps Tech support Is one of the leading? Electronic security and surveillance solutions provider in India and is a part of APS group. ",
     img: service3,
   },
   {
     id: 3,
-    title: "Traning",
+    title: "Training. ",
     subtitle:
-      "APS Training Academy The vertical of AP securitas was established in 2014. It provides solution of training, security, audit and consolation.",
+      "APS Training Academy The vertical of AP Securitas  was established in 2014. It provides solution of training, security, audit and consolation.",
     img: service2,
   },
   {

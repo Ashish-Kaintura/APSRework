@@ -3,7 +3,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SiSecurityscorecard } from "react-icons/si";
 import { ArrowUpRight } from "lucide-react";
-import about from "../images/home/home about.jpg";
+import about from "../images/home/homeabout.jpeg";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -162,9 +163,9 @@ export const AboutSummary = () => {
           <div ref={imageContainerRef} className="w-full lg:w-[45%] relative">
             <div className="relative z-10 rounded-2xl overflow-hidden shadow-lg group">
               <img
+                loading="lazy"
                 ref={imageRef}
                 src={about}
-                loading="lazy"
                 alt="APS Group Journey"
                 // Smaller heights for a compact look
                 className="w-full h-[280px] md:h-[350px] lg:h-[480px] object-cover"
@@ -244,14 +245,17 @@ export const AboutSummary = () => {
 
             <div className="overflow-hidden pt-2">
               <div className="mask-text inline-block">
-                <button className="group flex items-center gap-3 bg-slate-900 text-white pl-6 pr-1.5 py-1.5 rounded-full hover:bg-primary transition-all duration-300 shadow-lg">
-                  <span className="font-bold text-[10px] lg:text-xs uppercase tracking-widest">
-                    Learn Our History
-                  </span>
-                  <div className="w-8 h-8 lg:w-10 lg:h-10 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
-                    <ArrowUpRight size={16} />
-                  </div>
-                </button>
+                <Link to="/about-us">
+                  {" "}
+                  <button className="group flex items-center gap-3 bg-slate-900 text-white pl-6 pr-1.5 py-1.5 rounded-full hover:bg-primary transition-all duration-300 shadow-lg">
+                    <span className="font-bold text-[10px] lg:text-xs uppercase tracking-widest">
+                      Learn Our History
+                    </span>{" "}
+                    <div className="w-8 h-8 lg:w-10 lg:h-10 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all">
+                      <ArrowUpRight size={16} />
+                    </div>
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

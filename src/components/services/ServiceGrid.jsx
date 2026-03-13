@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Shield, Building2, Cctv, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-const API = "http://localhost:5000/api/services";
-const IMAGE_BASE_URL = "http://localhost:5000/";
+const API = import.meta.env.VITE_API_URL;
+const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_BASE_URL;
 
 // Animation Variants
 const containerVariants = {

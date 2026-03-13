@@ -3,31 +3,33 @@ import { gsap } from 'gsap';
 import { Shield, Eye, Building2, ArrowRight } from 'lucide-react';
 
 export const slides = [
-    {
-        id: 1,
-        title: "Manned Guarding",
-        label: "Physical Security",
-        description: "Expertly trained security personnel for corporate, industrial, and residential protection.",
-        image: "https://i.postimg.cc/QCgvVHVd/03.jpg", // Security Guard Concept
-        icon: <Shield size={24} />,
-    },
-    {
-        id: 2,
-        title: "24x7 Monitoring",
-        label: "Surveillance",
-        description: "Advanced electronic surveillance and real-time threat detection from our command center.",
-        image: "https://i.postimg.cc/T1jBhphY/00.jpg", // Tech/CCTV Concept
-        icon: <Eye size={24} />,
-    },
-    {
-        id: 3,
-        title: "Facility Management",
-        label: "Proton Services",
-        description: "Integrated facility solutions ensuring a safe and productive environment for your assets.",
-        image: "https://i.postimg.cc/nrKNMCML/04.jpg",
-        icon: <Building2 size={24} />,
-    },
-   
+  {
+    id: 1,
+    title: "Manned Guarding",
+    label: "Physical Security",
+    description:
+      "Expertly trained security personnel for corporate, industrial, and residential protection.",
+    image: "/bannerhome/manguard (1).png", // Security Guard Concept
+    icon: <Shield size={24} />,
+  },
+  {
+    id: 2,
+    title: "24x7 Monitoring",
+    label: "Surveillance",
+    description:
+      "Advanced electronic surveillance and real-time threat detection from our command center.",
+    image: "/bannerhome/247 (1).png", // Tech/CCTV Concept
+    icon: <Eye size={24} />,
+  },
+  {
+    id: 3,
+    title: "Facility Management",
+    label: "Proton Services",
+    description:
+      "Integrated facility solutions ensuring a safe and productive environment for your assets.",
+    image: "/bannerhome/IFM.png",
+    icon: <Building2 size={24} />,
+  },
 ];
 
 const AccordionSlider = () => {

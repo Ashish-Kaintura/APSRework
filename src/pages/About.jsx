@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AboutHero } from "../components/About/AboutHero";
 import { VisionStory } from "../components/About/VisionStory";
 import { MissionValues } from "../components/About/MissionValues";
@@ -12,8 +12,12 @@ import { LiquidZigZagStory } from "../components/About/ZigZagStory";
 import { ZigZagStory } from "../components/About/ZigzagstorynoLiquied";
 import { LeadershipSection } from "../components/About/LeadershipSection";
 import { PremiumZigZagStory } from "../components/About/PremiumZigZagStory";
+import { SubBannerSlider } from "../components/About/SubBannerSlider";
 
 export default function About() {
+  // useEffect(()=>{
+  //   window.scroll(0,0)
+  // })
   return (
     <>
       <section>
@@ -21,12 +25,17 @@ export default function About() {
         <FounderNarrative />
         <IndustrialRecognition />
         <VisionStory />
-        <LeadershipSection/>
+        <LeadershipSection />
         {/* <MissionValues /> */}
-        <PremiumZigZagStory/>
+        <PremiumZigZagStory />
         {/* <LiquidZigZagStory /> */}
         {/* <ZigZagStory /> */}
+
         <JourneyRoadmap />
+        <h4 className="text-4xl uppercase  font-sans font-bold tracking-wide text-primary text-center pt-9">
+          <span className="text-gray-900 italic "> OUR </span>Clientele 
+        </h4>
+        <SubBannerSlider />
         {/* <NationalPresence /> */}
         {/* <CareersSection /> */}
         <AboutCTA />

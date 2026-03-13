@@ -13,6 +13,7 @@ body {
 h1,
 h2,
 h3,
+
 .serif {
     /* font-family: 'Playfair Display', serif; */
     font-family: 'Roboto', sans-serif;
@@ -25,4 +26,42 @@ h3,
 /* Premium Text Reveal Utility */
 .clip-text {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+
+.animated-border {
+    position: relative;
+    padding: 2px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.animated-border::before {
+    content: "";
+    position: absolute;
+    inset: -150%;
+    background: conic-gradient(transparent 0deg,
+            transparent 260deg,
+            #CF2632 280deg,
+            #CF2632 300deg,
+            transparent 320deg);
+    animation: rotateBorder 8s linear infinite;
+}
+
+.inner-content {
+    position: relative;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    z-index: 2;
+}
+
+@keyframes rotateBorder {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
