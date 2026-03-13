@@ -94,7 +94,88 @@ router.post(
 
 
 // update 
+router.get("/slug/:slug", async (req, res) => {
+  try {
 
+    const blog = await BlogModal.findOne({ slug: req.params.slug });
+
+    if (!blog) {
+      return res.status(404).json({ error: "Service not found" });
+    }
+
+    res.json(blog);
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+// router.put(
+//   '/:id',
+//   protect,
+//   adminOnly,
+//   upload.fields([
+//     { name: 'CoverImage', maxCount: 1 },
+//     { name: 'Image', maxCount: 1 },
+//     { name: 'Image2', maxCount: 1 },
+//     { name: 'bgImage', maxCount: 1 },
+//   ]),
+//   async (req, res) => {
+//     try {
+//       const blog = await BlogModal.findById(req.params.id);
+
+//       if (!blog) {
+//         return res.status(404).json({ error: 'Blog not found' });
+//       }
+
+//       const updateData = { ...req.body };
+
+//       // helper to delete old image - using promises
+//       const deleteFile = async (filePath) => {
+//         if (!filePath) return;
+//         const fullPath = path.join(__dirname, '..', filePath);
+//         try {
+//           if (fs.existsSync(fullPath)) {
+//             await fs.promises.unlink(fullPath);
+//           }
+//         } catch (e) {
+//           console.warn('Failed to delete file', fullPath, e.message);
+//         }
+//       };
+
+//       if (req.files?.CoverImage) {
+//         await deleteFile(blog.CoverImage);
+//         updateData.CoverImage = `/uploads/blogs/${req.files.CoverImage[0].filename}`;
+//       }
+
+//       if (req.files?.Image) {
+//         await deleteFile(blog.Image);
+//         updateData.Image = `/uploads/blogs/${req.files.Image[0].filename}`;
+//       }
+
+//       if (req.files?.Image2) {
+//         await deleteFile(blog.Image2);
+//         updateData.Image2 = `/uploads/blogs/${req.files.Image2[0].filename}`;
+//       }
+
+//       if (req.files?.bgImage) {
+//         await deleteFile(blog.bgImage);
+//         updateData.bgImage = `/uploads/blogs/${req.files.bgImage[0].filename}`;
+//       }
+
+//       const updatedBlog = await BlogModal.findByIdAndUpdate(
+//         req.params.id,
+//         updateData,
+//         { new: true }
+//       );
+
+//       res.json(updatedBlog);
+//     } catch (error) {
+//       console.error('Error updating blog:', error);
+//       res.status(500).json({ error: 'Failed to update blog' });
+//     }
+//   }
+// );
+// update 
 router.put(
   '/:id',
   protect,
@@ -128,6 +209,32 @@ router.put(
         }
       };
 
+      // ==========================================
+      // NEW: Handle explicitly removed images
+      // ==========================================
+      if (req.body.imagesToRemove) {
+        try {
+          const imagesToRemove = JSON.parse(req.body.imagesToRemove);
+          const allowedImageFields = ['CoverImage', 'Image', 'Image2', 'bgImage'];
+
+          for (const field of imagesToRemove) {
+            // Ensure the field is a valid image field and actually exists in the DB
+            if (allowedImageFields.includes(field) && blog[field]) {
+              // 1. Delete the physical file from the server
+              await deleteFile(blog[field]);
+
+              // 2. Clear the field in the database
+              updateData[field] = '';
+            }
+          }
+        } catch (parseError) {
+          console.error('Failed to parse imagesToRemove:', parseError);
+        }
+      }
+
+      // ==========================================
+      // EXISTING: Handle newly uploaded replacing images
+      // ==========================================
       if (req.files?.CoverImage) {
         await deleteFile(blog.CoverImage);
         updateData.CoverImage = `/uploads/blogs/${req.files.CoverImage[0].filename}`;
@@ -161,7 +268,6 @@ router.put(
     }
   }
 );
-
 
 // DELETE a Blog by ID
 

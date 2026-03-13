@@ -16,6 +16,25 @@ connectDB();
 
 // Middleware
 app.use(cors());
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     credentials: true
+//   })
+// );
+// const loginLimiter = rateLimit({
+//   windowMs: 10 * 60 * 1000,
+//   max: 5,
+//   message: "Too many login attempts. Try again later."
+// });
+// app.use("/login", loginLimiter);
+// app.use(
+//   helmet({
+//     contentSecurityPolicy: true,
+//     frameguard: { action: "deny" }
+//   })
+// );
 app.use(express.json());
 
 // Routes

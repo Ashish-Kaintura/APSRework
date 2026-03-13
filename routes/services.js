@@ -120,7 +120,66 @@ router.post("/", protect, adminOnly, handleUpload, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+router.get("/slug/:slug", async (req, res) => {
+  try {
 
+    const service = await Service.findOne({ slug: req.params.slug });
+
+    if (!service) {
+      return res.status(404).json({ error: "Service not found" });
+    }
+
+    res.json(service);
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+// PUT (full) update service
+// router.put("/:id", protect, adminOnly, handleUpload, async (req, res) => {
+//   try {
+//     const service = await Service.findById(req.params.id);
+//     if (!service) return res.status(404).json({ error: "Service not found" });
+
+//     const parsedBody = parseJsonFields(req.body);
+
+//     // Ensure nested objects exist to prevent undefined errors
+//     if (!parsedBody.banner) parsedBody.banner = service.banner || {};
+//     if (!parsedBody.shortSummary) parsedBody.shortSummary = service.shortSummary || {};
+
+//     if (req.files) {
+//       // Main Image
+//       if (req.files.image) {
+//         safeUnlink(service.image);
+//         parsedBody.image = req.files.image[0].path.replace(/\\/g, "/");
+//       }
+//       // Banner Images
+//       if (req.files.bannerImage) {
+//         if (service.banner?.bannerImage) safeUnlink(service.banner.bannerImage);
+//         parsedBody.banner.bannerImage = req.files.bannerImage[0].path.replace(/\\/g, "/");
+//       }
+//       if (req.files.portraitImage) {
+//         if (service.banner?.portraitImage) safeUnlink(service.banner.portraitImage);
+//         parsedBody.banner.portraitImage = req.files.portraitImage[0].path.replace(/\\/g, "/");
+//       }
+//       // Short Summary Images
+//       if (req.files.image1) {
+//         if (service.shortSummary?.image1) safeUnlink(service.shortSummary.image1);
+//         parsedBody.shortSummary.image1 = req.files.image1[0].path.replace(/\\/g, "/");
+//       }
+//       if (req.files.image2) {
+//         if (service.shortSummary?.image2) safeUnlink(service.shortSummary.image2);
+//         parsedBody.shortSummary.image2 = req.files.image2[0].path.replace(/\\/g, "/");
+//       }
+//     }
+
+//     Object.assign(service, parsedBody);
+//     const updated = await service.save();
+//     res.json(updated);
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
 // PUT (full) update service
 router.put("/:id", protect, adminOnly, handleUpload, async (req, res) => {
   try {
@@ -133,10 +192,46 @@ router.put("/:id", protect, adminOnly, handleUpload, async (req, res) => {
     if (!parsedBody.banner) parsedBody.banner = service.banner || {};
     if (!parsedBody.shortSummary) parsedBody.shortSummary = service.shortSummary || {};
 
+    // ==========================================
+    // NEW: Handle Explicitly Removed Images
+    // ==========================================
+    if (req.body.imagesToRemove) {
+      try {
+        const imagesToRemove = JSON.parse(req.body.imagesToRemove);
+
+        if (imagesToRemove.includes("image")) {
+          if (service.image) safeUnlink(service.image);
+          parsedBody.image = "";
+          service.image = undefined; // Force Mongoose to overwrite
+        }
+        if (imagesToRemove.includes("bannerImage")) {
+          if (service.banner?.bannerImage) safeUnlink(service.banner.bannerImage);
+          parsedBody.banner.bannerImage = "";
+        }
+        if (imagesToRemove.includes("portraitImage")) {
+          if (service.banner?.portraitImage) safeUnlink(service.banner.portraitImage);
+          parsedBody.banner.portraitImage = "";
+        }
+        if (imagesToRemove.includes("image1")) {
+          if (service.shortSummary?.image1) safeUnlink(service.shortSummary.image1);
+          parsedBody.shortSummary.image1 = "";
+        }
+        if (imagesToRemove.includes("image2")) {
+          if (service.shortSummary?.image2) safeUnlink(service.shortSummary.image2);
+          parsedBody.shortSummary.image2 = "";
+        }
+      } catch (parseError) {
+        console.error("Failed to parse imagesToRemove:", parseError);
+      }
+    }
+
+    // ==========================================
+    // EXISTING: Upload New Files
+    // ==========================================
     if (req.files) {
       // Main Image
       if (req.files.image) {
-        safeUnlink(service.image);
+        if (service.image) safeUnlink(service.image);
         parsedBody.image = req.files.image[0].path.replace(/\\/g, "/");
       }
       // Banner Images
@@ -159,7 +254,10 @@ router.put("/:id", protect, adminOnly, handleUpload, async (req, res) => {
       }
     }
 
+    // Apply the parsed updates
     Object.assign(service, parsedBody);
+
+    // Save to database
     const updated = await service.save();
     res.json(updated);
   } catch (err) {
